@@ -6,7 +6,7 @@ import axios from "axios";
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from "react-bootstrap/Container";
-
+import EndScreen from "./pages/EndScreen"
 //imp container
 
 
@@ -25,11 +25,11 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <Nav />
         <Container>
           <Switch>
             {/* Routes */}
           </Switch>
+          <EndScreen />
         </Container>
       </Router>
     );
