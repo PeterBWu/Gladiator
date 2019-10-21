@@ -6,10 +6,12 @@ import axios from "axios";
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from "react-bootstrap/Container";
-import EndScreen from "./pages/EndScreen"
-//imp container
 
-
+//import pages
+import Start from './pages/Start';
+import CharacterCreation from './pages/CharacterCreation';
+import EndScreen from './pages/EndScreen';
+import TransitionScreen from './pages/TransitionScreen';
 //import comp
 
 
@@ -27,7 +29,10 @@ class App extends Component {
       <Router>
         <Container>
           <Switch>
-            {/* Routes */}
+            <Route exact path='/create' component={CharacterCreation} />
+            <Route exact path='/end' component={EndScreen} />
+            <Route exact path='/shop' component={TransitionScreen} />
+            <Route component={Start} />
           </Switch>
           <EndScreen />
         </Container>
