@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './index.module.css'
 
 // class EndScreen extends React.Component {
 
@@ -6,7 +7,7 @@ import React from 'react';
 
 function EndScreen(props) {
   return (
-    <div>
+    <div className={styles.div}>
       <h1> YOU WIN </h1>
     </div>
   )
