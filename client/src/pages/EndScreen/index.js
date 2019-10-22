@@ -1,9 +1,16 @@
 import React from 'react';
+import styles from './index.module.css'
 
-function EndScreen() {
+// class EndScreen extends React.Component {
+
+// }
+
+function EndScreen(props) {
   return (
-    <h1>I am the End Screen</h1>
+    <div className={styles.div}>
+      <h1> YOU WIN </h1>
+    </div>
   )
 }
 
-export default EndScreen;
+export default EndScreen
