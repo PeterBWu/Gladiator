@@ -12,6 +12,7 @@ import Start from './pages/Start';
 import CharacterCreation from './pages/CharacterCreation';
 import EndScreen from './pages/EndScreen';
 import TransitionScreen from './pages/TransitionScreen';
+import BattleScreen from './pages/BattleScreen'
 //import comp
 
 
@@ -52,6 +53,7 @@ class App extends Component {
             <Route exact path='/create' component={CharacterCreation} />
             <Route exact path='/end' component={EndScreen} />
             <Route exact path='/shop' component={TransitionScreen} />
+            <Route exact path='/battle' component={BattleScreen}/>
             <Route component={Start} />
           </Switch>
         </Container>
