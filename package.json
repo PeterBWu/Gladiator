@@ -1,5 +1,5 @@
 {
-  "name": "blogger",
+  "name": "gladiator",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -21,7 +21,6 @@
   "dependencies": {
     "express": "^4.17.1",
     "if-env": "^1.0.4",
-    "mysql": "^2.17.1",
-    "react-bootstrap": "^1.0.0-beta.14"
+    "mysql": "^2.17.1"
   }
 }
