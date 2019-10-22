@@ -1,0 +1,48 @@
+
+button{
+  margin-top: 15px;
+}
+
+* {
+  font-weight: bold;
+}
+
+/* all hover css */
+
+
+#confirm:hover{
+  background-color: yellow;
+  color: black;
+}
+
+#one:hover{
+  background-color: yellow;
+}
+#two:hover{
+  background-color: yellow;
+}
+#three:hover{
+  background-color: yellow;
+}
+#four:hover{
+  background-color: yellow;
+}
+
+#Archer-40-20:hover {
+  background-color: yellow;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+#Warrior-20-40:hover {
+  background-color: yellow;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px
+}
+#Captain-30-30:hover {
+  background-color: yellow;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 10px
+}
