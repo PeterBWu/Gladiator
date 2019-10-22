@@ -7,8 +7,8 @@ CREATE TABLE leaderboard(
 leader_id INT AUTO_INCREMENT NOT NULL,
 leader_name VARCHAR(50) NOT NULL,
 leader_portrait VARCHAR(255) NOT NULL,
-leader_atk INT,
-leader_hp INT,
+leader_atk INT NOT NULL,
+leader_hp INT NOT NULL,
 PRIMARY KEY(leader_id)
 
 );
