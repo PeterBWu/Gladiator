@@ -34,6 +34,7 @@ class App extends Component {
             <Route exact path='/shop' component={TransitionScreen} />
             <Route component={Start} />
           </Switch>
+          <EndScreen />
         </Container>
       </Router>
     );
