@@ -3,12 +3,12 @@ DROP DATABASE IF EXISTS gladiator_db;
 CREATE DATABASE gladiator_db;
 USE gladiator_db;
 
-CREATE TABLE fighter(
-fighter_id INT NOT NULL AUTO_INCREMENT,
-figher_portrait VARCHAR(255) NOT NULL, 
-fighter_name VARCHAR(50) NOT NULL,
-fighter_hp_max INT DEFAULT 10 NOT NULL,
-PRIMARY KEY (fighter_id)
+CREATE TABLE character(
+character_id INT NOT NULL AUTO_INCREMENT,
+character_portrait VARCHAR(255) NOT NULL, 
+character_name VARCHAR(50) NOT NULL,
+character_hp_max INT DEFAULT 10 NOT NULL,
+PRIMARY KEY (character_id)
 );
 
 CREATE TABLE leaderboard(
