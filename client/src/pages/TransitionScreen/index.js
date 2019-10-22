@@ -6,7 +6,7 @@ import Ladder from './Ladder'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-function TransitionScreen() {
+function TransitionScreen(props) {
   return (
     <Row>
       <Col md={4}>
@@ -19,7 +19,7 @@ function TransitionScreen() {
       <Col md={8}>
           <Row>
               <Col>
-                <Shop />
+                <Shop handleState={props.handleState} />
               </Col>
           </Row>
       </Col>

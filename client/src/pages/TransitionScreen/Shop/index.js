@@ -58,7 +58,7 @@ class Shop extends Component {
   };
 
   handleNextScreen = () => {
-    this.setState({ inShop: false });
+    this.props.handleState("battle")
   };
 
   loadNextScreen = () => {

@@ -12,34 +12,49 @@ import Start from './pages/Start';
 import CharacterCreation from './pages/CharacterCreation';
 import EndScreen from './pages/EndScreen';
 import TransitionScreen from './pages/TransitionScreen';
+import BattleScreen from './pages/BattleScreen';
 //import comp
 
 
 class App extends Component {
   state = {
     // initial state
-    gameState:"start", // gameStates: start, create,end,shop,battle
+    gameState:"shop", // gameStates: start, create,end,shop,battle
     round:1, // round: int, counter for where we are in the ladder
     isDead:false, // determines if we add to ladder// continues game
-    characterStat:{}, //character stat object passed to all other items
+    characterStat:{}, //character stat object passed to all other items (MAX STATS)
     challengers:[] // array of enemy fighters
   };
 
   // commented out until all sections were completed.
-  // handleGameState = () =>{ 
-  //   switch(this.state.gameState){
-  //     case "create":
-  //       return ({CharacterCreation})
-  //     case "battle":
-  //       return ({BattleScreen})
-  //     case "shop":
-  //       return ({TransitionScreen})
-  //     case "end":
-  //       return ({EndScreen})
-  //     default:
-  //       return ({Start})
-  //   }
-  // }
+  renderGameState = () =>{ 
+    switch(this.state.gameState){
+      case "create":
+        return (<CharacterCreation handleState={this.handleGameState}/>)
+      case "battle":
+        return (<BattleScreen handleState={this.handleGameState}/>)
+      case "shop":
+        return (<TransitionScreen handleState={this.handleGameState}/>)
+      case "end":
+        return (<EndScreen handleState={this.handleGameState}/>)
+      default:
+        this.setState({
+          round:0,
+          isDead:false,
+          characterStat:{}, 
+          challengers:[]
+        })
+        return (<Start handleState={this.handleGameState}/>)
+    }
+  }
+
+  handleGameState = (gameState) => {
+    this.setState({
+      gameState,
+      round: this.state.round==="battle" ? this.state.round + 1 : this.state.round
+    })
+  }
+
   componentDidMount() {
     // initial fire once component mounts
   }
@@ -49,10 +64,12 @@ class App extends Component {
       <Router>
         <Container>
           <Switch>
-            <Route exact path='/create' component={CharacterCreation} />
+            {this.renderGameState()}
+            {/* <Route exact path='/create' component={CharacterCreation} />
             <Route exact path='/end' component={EndScreen} />
             <Route exact path='/shop' component={TransitionScreen} />
-            <Route component={Start} />
+            <Route exact path='/battle' component={BattleScreen}/>
+            <Route component={Start} /> */}
           </Switch>
         </Container>
       </Router>
