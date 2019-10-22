@@ -19,8 +19,8 @@ import BattleScreen from './pages/BattleScreen';
 class App extends Component {
   state = {
     // initial state
-    gameState:"shop", // gameStates: start, create,end,shop,battle
-    round:1, // round: int, counter for where we are in the ladder
+    gameState:"start", // gameStates: start, create,end,shop,battle
+    round:0, // round: int, counter for where we are in the ladder
     isDead:false, // determines if we add to ladder// continues game
     characterStat:{}, //character stat object passed to all other items (MAX STATS)
     challengers:[] // array of enemy fighters
@@ -38,21 +38,38 @@ class App extends Component {
       case "end":
         return (<EndScreen handleState={this.handleGameState}/>)
       default:
-        this.setState({
-          round:0,
-          isDead:false,
-          characterStat:{}, 
-          challengers:[]
-        })
         return (<Start handleState={this.handleGameState}/>)
     }
   }
 
-  handleGameState = (gameState) => {
-    this.setState({
-      gameState,
-      round: this.state.round==="battle" ? this.state.round + 1 : this.state.round
-    })
+  handleGameState = gameState => {
+    let current = {...this.state}
+    current.gameState = gameState
+    switch (gameState) {
+      case "create":
+        
+        break
+      case "battle":
+        current.round = this.state.round + 1
+        break
+      case "shop":
+        break
+
+      case "end":
+        break
+
+      default:
+        current ={
+          gameState:"start", 
+          round:0, 
+          isDead:false, 
+          characterStat:{}, 
+          challengers:[] 
+        }
+
+    }
+    console.log({...current})
+    this.setState({...current})
   }
 
   componentDidMount() {
