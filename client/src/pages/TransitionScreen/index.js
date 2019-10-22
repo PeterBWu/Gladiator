@@ -1,6 +1,6 @@
 import React from 'react';
-import Shop from './../../Components/Shop'
-import Ladder from './../../Components/Ladder'
+import Shop from './Shop'
+import Ladder from './Ladder'
 
 
 import Col from 'react-bootstrap/Col'
