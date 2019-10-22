@@ -18,8 +18,28 @@ import TransitionScreen from './pages/TransitionScreen';
 class App extends Component {
   state = {
     // initial state
+    gameState:"start", // gameStates: start, create,end,shop,battle
+    round:1, // round: int, counter for where we are in the ladder
+    isDead:false, // determines if we add to ladder// continues game
+    characterStat:{}, //character stat object passed to all other items
+    challengers:[] // array of enemy fighters
   };
 
+  // commented out until all sections were completed.
+  // handleGameState = () =>{ 
+  //   switch(this.state.gameState){
+  //     case "create":
+  //       return ({CharacterCreation})
+  //     case "battle":
+  //       return ({BattleScreen})
+  //     case "shop":
+  //       return ({TransitionScreen})
+  //     case "end":
+  //       return ({EndScreen})
+  //     default:
+  //       return ({Start})
+  //   }
+  // }
   componentDidMount() {
     // initial fire once component mounts
   }
