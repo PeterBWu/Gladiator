@@ -12,7 +12,7 @@ function TransitionScreen() {
       <Col md={4}>
         <Row>
           <Col>
-          <Ladder></Ladder>
+          <Ladder round={3} challengers={["a","b","c"]}/>
           </Col>
         </Row>
       </Col>
