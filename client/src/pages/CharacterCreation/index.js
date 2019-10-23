@@ -2,29 +2,40 @@ import React from 'react';
 import './style.css'
 import { Card, Form, Col, Row, Image, Button, Toast } from 'react-bootstrap'
 import { ModalHeader, Modal, ModalBody, ModalFooter } from 'reactstrap'
+import ImageCard from './ImageCard'
 
 
-const style = {
-  image: {
-    height: '183px',
-    width: '250px',
-  }
-}
 
 
 class CharacterCreation extends React.Component {
-
   state = {
     name: "",
     id: "??????",
     hp: '?',
     attack: '?',
     counter: 0,
-    characterImage: "https://making-the-web.com/sites/default/files/clipart/164002/question-mark-pics-164002-8941717.jpg"
+    characterImage: "https://making-the-web.com/sites/default/files/clipart/164002/question-mark-pics-164002-8941717.jpg",
+    characterArray: [
+      {
+        src: "https://i.pinimg.com/474x/03/78/dc/0378dcb5a549eb2eecb38cb0ea344173.jpg",
+        id: 'one'
+      },
+      {
+        src: "https://i.pinimg.com/474x/60/b5/70/60b570b06d1c8fde22b1d27b8f51dcca.jpg",
+        id: 'two'
+      },
+      {
+        src: "https://i.pinimg.com/originals/15/bf/2c/15bf2c34a60b6665123d46df52ede554.jpg" ,
+        id: 'three'
+      },
+      {
+        src: "https://i.pinimg.com/474x/e2/01/05/e20105178b28fe75dd329a812746f3e7--the-ninja-martial-arts.jpg",
+        id: 'four'
+      }
+    ]
   }
 
   handleAttributeClick = props => {
-
     console.log(props.currentTarget.id)
     const attributeArray = props.currentTarget.id.split("-")
     let nameHolder = attributeArray[0]
@@ -39,10 +50,7 @@ class CharacterCreation extends React.Component {
       modal: false,
       modalAlert: false
     })
-
   }
-
-
   handleImageClick = props => {
     console.log(props.currentTarget.src)
     this.setState({
@@ -52,9 +60,10 @@ class CharacterCreation extends React.Component {
   }
 
   handleInputChange = event => {
+    event.preventDefault()
     // Getting the value and name of the input which triggered the change
     const { name, value } = event.target;
-    console.log('im changing')
+    console.log(value)
     // Updating the input's state
     this.setState({
       [name]: value
@@ -69,7 +78,6 @@ class CharacterCreation extends React.Component {
     }
     else {
       // Preventing the default behavior of the form submit (which is to refresh the page)
-      event.preventDefault();
       console.log('Hello ' + this.state.name + " You have " + this.state.hp + " hp and " + this.state.attack + " attack points.  Good Luck!")
       // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
       this.setState({
@@ -82,7 +90,7 @@ class CharacterCreation extends React.Component {
     event.preventDefault();
     this.toggle();
     console.log(this.state)
-    this.props.handleState("battle",null,this.state)
+    this.props.handleState("battle", null, this.state)
   }
 
   toggle = () => {
@@ -156,7 +164,12 @@ class CharacterCreation extends React.Component {
               <Form.Row>
                 <Col >
                   <h4>Fighter's Name</h4>
-                  <Form.Control className="mb-3" name="name" type="text" value={this.state.name} onChange={this.handleInputChange} placeholder="Input name here" />
+                  <Form.Control className="mb-3" name="name" type="text" value={this.state.name} onChange={this.handleInputChange} onKeyPress={e => {
+                    if (e.key === "Enter") {
+                      e.preventDefault()
+                      { this.handleSubmit() }
+                    };
+                  }} placeholder="Input name here" />
                   {/* This the section where the user's choices are shown for confirmation */}
                   {/* This shows the chosen attributes */}
                   <div className="row">
@@ -173,9 +186,9 @@ class CharacterCreation extends React.Component {
                     </Card>
 
                     {/* This shows the chosen image */}
-                    <Col xs={3} md={3} >
-                      <Image style={style.image} src={this.state.characterImage} thumbnail />
-                    </Col>
+                  
+                      <ImageCard src={this.state.characterImage}/>
+                  
 
                     {/* This is the confirmation button that adds character to database and
                     starts the game play */}
@@ -193,19 +206,9 @@ class CharacterCreation extends React.Component {
               {/* This is the section with the character image options  */}
               <h4 className="p-1">Choose your Character's Image</h4>
               <Row className="mt-2">
-
-                <Col xs={3} md={3} >
-                  <Image id='one' style={style.image} src="https://i.pinimg.com/474x/03/78/dc/0378dcb5a549eb2eecb38cb0ea344173.jpg" thumbnail onClick={this.handleImageClick} />
-                </Col>
-                <Col xs={3} md={3}>
-                  <Image id='two' style={style.image} src="https://i.pinimg.com/474x/60/b5/70/60b570b06d1c8fde22b1d27b8f51dcca.jpg" thumbnail onClick={this.handleImageClick} />
-                </Col>
-                <Col xs={3} md={3}>
-                  <Image id='three' style={style.image} src="https://i.pinimg.com/originals/15/bf/2c/15bf2c34a60b6665123d46df52ede554.jpg" thumbnail onClick={this.handleImageClick} />
-                </Col>
-                <Col xs={3} md={3}>
-                  <Image id='four' style={style.image} src="https://i.pinimg.com/474x/e2/01/05/e20105178b28fe75dd329a812746f3e7--the-ninja-martial-arts.jpg" thumbnail onClick={this.handleImageClick} />
-                </Col>
+              {
+                this.state.characterArray.map(card => <ImageCard items={card} onClick={this.handleImageClick}/>)
+              }
               </Row>
             </Form>
           </div>
@@ -241,7 +244,7 @@ class CharacterCreation extends React.Component {
           <Modal isOpen={this.state.modalAlert} toggle={this.toggleAlert} className="text-center">
             <ModalHeader toggle={this.toggleAlert}></ModalHeader>
             <ModalBody className="text-center" style={{ backgroundColor: 'darkred', color: 'yellow' }}>
-              <h3>{this.state.name}</h3>            
+              <h3>{this.state.name}</h3>
               <div className="text-center">
                 Fill out all sections!
               </div>

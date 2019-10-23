@@ -33,7 +33,10 @@ class BattleScreen extends React.Component {
   }
 
   checkForWin = (round) => {
-    console.log('Round -', round)
+    console.log('Round - ' + round)
+    if(round === 3){
+      this.props.handleState('end')
+    }
   }
 
   handleClick = props => {
@@ -128,7 +131,7 @@ class BattleScreen extends React.Component {
   }
 
   render() {
-    { this.checkForWin(this.props) }
+    { this.checkForWin(this.props.currentState.round) }
 
     return (
       <div className="container 100vh d-flex justify-content-center text-center mt-2">
@@ -159,11 +162,11 @@ class BattleScreen extends React.Component {
                   <Col xs={6} md={6}>
                     <Button variant="warning" className="fluid">
                       <Card.Body>
-                        <Card.Title className="text-left" >Captain</Card.Title>
+                        <Card.Title className="text-left" >{this.props.currentState.characterStat.name}</Card.Title>
                         <Card.Text>
                           <div className='ml-3'>
-                            <Row>HP = 30</Row>
-                            <Row>Attack = 30</Row>
+                            <Row>HP = {this.props.currentState.characterStat.hp}</Row>
+                            <Row>Attack = {this.props.currentState.characterStat.attack}</Row>
                           </div>
                         </Card.Text>
                       </Card.Body>
@@ -171,7 +174,7 @@ class BattleScreen extends React.Component {
                   </Col>
                   <Col xs={6} md={6}>
                     <Card>
-                      <Card.Img src="https://i.pinimg.com/474x/e2/01/05/e20105178b28fe75dd329a812746f3e7--the-ninja-martial-arts.jpg" thumbnail onClick={this.handleImageClick} />
+                      <Card.Img src={this.props.currentState.characterStat.characterImage} />
                     </Card>
                   </Col>
                 </Row>
@@ -192,7 +195,7 @@ class BattleScreen extends React.Component {
                 <Container >
                   <Row>
                     <Col xs={4} md={4}>
-                      <Card id={'one'} onClick={this.handleClick} style={style.button}>
+                      <Card id={'rock'} onClick={this.handleClick} style={style.button}>
                         <Card.Img src="https://cdn.clipart.email/1d7d60cb99465ed18209dddef3219a0b_red-box-clip-art-at-clkercom-vector-clip-art-online-royalty-_600-446.png" roundedCircle />
                         <Card.ImgOverlay>
                           <Card.Text className="mt-3">Grapple</Card.Text>
@@ -200,7 +203,7 @@ class BattleScreen extends React.Component {
                       </Card>
                     </Col>
                     <Col xs={4} md={4}>
-                      <Card id={'two'} onClick={this.handleClick} style={style.button}>
+                      <Card id={'paper'} onClick={this.handleClick} style={style.button}>
                         <Card.Img src="https://cdn.clipart.email/1d7d60cb99465ed18209dddef3219a0b_red-box-clip-art-at-clkercom-vector-clip-art-online-royalty-_600-446.png" roundedCircle />
                         <Card.ImgOverlay>
                           <Card.Text className="mt-3">Block</Card.Text>
@@ -208,17 +211,15 @@ class BattleScreen extends React.Component {
                       </Card>
                     </Col>
                     <Col xs={4} md={4}>
-                      <Card id={'three'} onClick={this.handleClick} style={style.button}>
+                      <Card id={'scissors'} onClick={this.handleClick} style={style.button}>
                         <Card.Img src="https://cdn.clipart.email/1d7d60cb99465ed18209dddef3219a0b_red-box-clip-art-at-clkercom-vector-clip-art-online-royalty-_600-446.png" roundedCircle />
                         <Card.ImgOverlay>
                           <Card.Text className="mt-3">Strike</Card.Text>
-
                         </Card.ImgOverlay>
                       </Card>
                     </Col>
                   </Row>
-                </Container>
-  
+                </Container>  
               </Card>
             </div>
           </div>
