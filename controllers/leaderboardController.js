@@ -41,6 +41,17 @@ module.exports={
                 return res.status(404).send(err);
             }
         }
+    },
+    lastEntries:(req, res)=>{
+        const challengers = parseInt(req.params.count)
+        const query = `SELECT * FROM leaderboard ORDER BY leader_id DESC LIMIT ?;`;
+        connection.query(query, challengers, (err, response)=>{
+            if(err){
+                return res.status(404).send(err);
+            }
+            
+            res.json(response)
+        })
     }
 
 

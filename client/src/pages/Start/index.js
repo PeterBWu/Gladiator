@@ -13,6 +13,7 @@ class Start extends Component {
 
   componentDidMount() {
     console.log("call leaderboard")
+    
   }
 
   render() {

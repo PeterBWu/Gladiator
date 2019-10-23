@@ -90,7 +90,7 @@ class CharacterCreation extends React.Component {
     event.preventDefault();
     this.toggle();
     console.log(this.state)
-    this.props.handleState("battle", null, this.state)
+    this.props.handleState("shop", null, this.state)
   }
 
   toggle = () => {
