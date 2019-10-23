@@ -8,12 +8,9 @@ import Card from "react-bootstrap/Card";
 
 import styles from "./index.module.css"; 
 import Logo from "./pictures/titlelogo.png";
+import Champion from "./Champion";
 
 class Start extends Component {
-
-  componentDidMount() {
-    console.log("call leaderboard")
-  }
 
   render() {
     return (
@@ -25,15 +22,18 @@ class Start extends Component {
               <Card.Body className="bg-dark">
                 <Card.Subtitle className="mb-2 text-light text-center slogan">Vincit qui se vincit</Card.Subtitle>
                 <Row className="mt-2">
-                  <Col>
-                    <Row>Current Champion Component Goes Here</Row>
-                  </Col>
                   <Col className="text-center">
                     <Button 
                       size="lg"
+                      variant="outline-light"
                       onClick={() => this.props.handleState("create")}>
                       Create Challenger
                     </Button>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <Champion champion={this.props.currentState.challengers[0]} />
                   </Col>
                 </Row>
               </Card.Body>
