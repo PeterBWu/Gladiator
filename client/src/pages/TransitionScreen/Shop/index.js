@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 import Potions from "./../Potions";
@@ -57,8 +56,8 @@ class Shop extends Component {
     );
   };
 
-  handleNextScreen = (character=undefined) => {
-    this.props.handleState("battle",character)
+  handleNextScreen = (character=this.props.characterStat) => {
+    this.props.handleState("battle",null,character)
   };
 
   loadNextScreen = () => {
