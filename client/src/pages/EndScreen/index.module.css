@@ -1,3 +1,41 @@
-.div{
-  background-color: aqua;
+.results{
+  /* position: absolute; */
+  /* width: 162px; */
+  height: 100px;
+  text-align: center;
+  background: #C4C4C4;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.victors{
+  /* position: absolute; */
+  width: 145px;
+  height: 145px;
+  text-align: center;
+  background: #AFAEF2;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.leader{
+  width: 145px;
+  height: 145px;
+  text-align: center;
+  background: #FFE5BD;
+  display:flex;
+  flex-direction: column;
+  justify-content: center
+}
+
+.container{
+  /* width: 357px;
+  height: 254px; */
+  background: #FFFFFF;
+}
+
+.button{
+  text-align: center
 }

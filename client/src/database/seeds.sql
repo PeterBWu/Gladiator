@@ -1,25 +1,40 @@
-INSERT INTO leaderboard (leader_name, leader_portrait, atk, hp)
+INSERT INTO leaderboard (leader_name, leader_portrait, leader_atk, leader_hp)
 VALUES
-("William the Conqueror", "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE4MDAzNDEwNzQ3ODE5NTM0/william-the-conqueror-9542227-1-402.jpg"),
-("Hannibal Barca", "https://www.biography.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cg_face%2Cq_auto:good%2Cw_300/MTE4MDAzNDEwNTQ2MzYxODcw/hannibal-9327767-1-402.jpg"),
-("Joan of Arc", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Joan_of_Arc_miniature_graded.jpg/300px-Joan_of_Arc_miniature_graded.jpg"),
-("Tomoe Gozen", "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Tomoe-Gozen.jpg/800px-Tomoe-Gozen.jpg"),
-("Boudica", "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Boadicea_Haranguing_the_Britons_%28called_Boudicca%2C_or_Boadicea%29_by_John_Opie.jpg/800px-Boadicea_Haranguing_the_Britons_%28called_Boudicca%2C_or_Boadicea%29_by_John_Opie.jpg"),
-("Grace O’Malley", "https://allthatsinteresting.com/wordpress/wp-content/uploads/2018/03/grace-omalley.jpg"),
-("Alaric the Visigoth", "https://www.bbc.co.uk/staticarchive/163555f174737053c6fdb2a235751ceeeea0b554.jpg"),
-("Harold Godwinson", "https://spartacus-educational.com/00haroldW.jpeg"), 
-("Vercingetorix", "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Alise-Sainte-Reine_statue_Vercingetorix_par_Millet_2crop.jpg/800px-Alise-Sainte-Reine_statue_Vercingetorix_par_Millet_2crop.jpg"), 
-("Loren", "https://i.pinimg.com/originals/a3/d9/a8/a3d9a8ee80b82155914584d5d9df6cdd.jpg");
+("William the Conqueror", "./../assets/portraits_old/william_the_conqueror.jpg", 30, 30),
+("Hannibal Barca", "./../assets/portraits_old/hannibal_barca.jpg", 30, 30),
+("Joan of Arc", "./../assets/portraits_old/joan_of_arc.jpg", 30, 30),
+("Tomoe Gozen", "./../assets/portraits_old/tomoe_gozen.jpg", 30, 30),
+("Boudicca", "./../assets/portraits_old/boudicca.jpg", 30, 30),
+("Grace O’Malley", "./../assets/portraits_old/grace_omalley.jpg", 30, 30),
+("Alaric the Visigoth", "./../assets/portraits_old/alaric_the_visigoth.jpg", 30, 30),
+("Harold Godwinson", "./../assets/portraits_old/harold_godwinson.jpg", 30, 30), 
+("Vercingetorix", "./../assets/portraits_old/vercingetorix.jpg", 30, 30);
 
 
-INSERT INTO items (item_name, item_atk, item_hp)
+INSERT INTO items (item_name, item_img, item_atk, item_hp)
 VALUES
-("Potion of Rage", 5, 0),
-("Potion of Calm", 0, 5),
-("Gauntlets of the Inferno", 10, -5),
-("Breastplate of the Mountain", -5, 10),
-("Belt of Giant's Strength", +10, 0),
-("Boots of Cat's Grace", +0, +10),
-("Blade of Irresistable Force", +20, -10),
-("Shield of the Immovable Object", -10, 20)
-;
+("Potion of Rage","./../assets/item_img/pot_red.jpg", 5, 0),
+("Potion of Calm", "./../assets/item_img/pot_grey.jpg", 0, 5),
+("Gauntlet of the Inferno", "./../assets/item_img/gauntlet.png", 10, -5),
+("Armor of the Mountain", "./../assets/item_img/armor.jpg", -5, 10),
+("Belt of Giant's Strength", "./../assets/item_img/belt.jpeg", +10, 0),
+("Boots of Cat's Grace", "./../assets/item_img/boots.jpg", +0, +10),
+("Blade of Irresistable Force", "./../assets/item_img/sword.jpg", +20, -10),
+("Shield of the Immovable Object", "./../assets/item_img/shield.png", -10, 20);
+
+INSERT INTO portraits (port_img, port_sex)
+VALUES
+("./../assets/portraits_new/port_m1.jpg", "m"),
+("./../assets/portraits_new/port_m2.jpg", 'm'),
+("./../assets/portraits_new/port_m3.jpg", 'm'),
+("./../assets/portraits_new/port_m4.jpg", 'm'),
+("./../assets/portraits_new/port_m5.png", 'm'),
+("./../assets/portraits_new/port_m6.jpg", 'm'),
+("./../assets/portraits_new/port_m7.jpg", 'm'),
+("./../assets/portraits_new/port_f1.jpg", "f"),
+("./../assets/portraits_new/port_f2.jpg", "f"),
+("./../assets/portraits_new/port_f3.jpg", "f"),
+("./../assets/portraits_new/port_f4.jpg", "f"),
+("./../assets/portraits_new/port_f5.png", "f"),
+("./../assets/portraits_new/port_f6.jpg", "f"),
+("./../assets/portraits_new/port_f7.jpg", "f");

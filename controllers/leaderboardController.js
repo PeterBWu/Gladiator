@@ -14,17 +14,25 @@ module.exports={
     },
 
 
-    // add new character into leaderboard. needs to push down all people below
-    newRank: (req, res)=>{
+    // add new character into leaderboard. 
+    newChampion: (req, res)=>{
         const query = `INSERT INTO leaderboard (leader) VALUES(?)`;
         connection.query(query, leader, (err, response))={
             if(err){
                 return res.status(404).send(err);
             }
         }
+    },
+
+
+    currentChamp:(req, res)=>{
+        const query = `SELECT fields FROM leaderboard ORDER BY PRIMARY KEY DESC LIMIT 1;`;
+        connection.query(query, champ, (err, response))={
+            if(err){
+                return res.status(404).send(err);
+            }
+        }
     }
-
-
 
 
 
