@@ -14,7 +14,7 @@ const style = {
     width: '15vw',
   },
   button: {
-    marginTop: '15vh',
+    marginTop: '5vh',
     textAlign: 'center',
     height: '18vh'
   }
@@ -32,7 +32,12 @@ class BattleScreen extends React.Component {
 
   }
 
+  checkForWin = (round) => {
+    console.log('Round -', round)
+  }
+
   handleClick = props => {
+    console.log(this.props.currentState)
     let randomNumber = Math.floor(Math.random() * 3) + 1
     switch (randomNumber) {
       case 1:
@@ -68,7 +73,7 @@ class BattleScreen extends React.Component {
             })
             break;
           case 6:
-            this.props.handleState('end')
+            this.props.handleState('end',true)
             break;
 
           default: console.log('error')
@@ -107,7 +112,7 @@ class BattleScreen extends React.Component {
             })
             break;
           default: console.log('error')
-          case 6:
+          case 6:            
             this.props.handleState('shop')
             break;
         }
@@ -123,7 +128,7 @@ class BattleScreen extends React.Component {
   }
 
   render() {
-
+    { this.checkForWin(this.props) }
 
     return (
       <div className="container 100vh d-flex justify-content-center text-center mt-2">
