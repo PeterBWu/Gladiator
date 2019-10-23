@@ -26,7 +26,7 @@ module.exports={
 
 
     currentChamp:(req, res)=>{
-        const query = `SELECT fields FROM leaderboard ORDER BY PRIMARY KEY DESC LIMIT 1;        `;
+        const query = `SELECT fields FROM leaderboard ORDER BY PRIMARY KEY DESC LIMIT 1;`;
         connection.query(query, champ, (err, response))={
             if(err){
                 return res.status(404).send(err);
