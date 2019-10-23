@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.css'
-import { Card, Form, Col, Row, Image, Button } from 'react-bootstrap'
+import { Card, Form, Col, Row, Image, Button, Toast } from 'react-bootstrap'
 import { ModalHeader, Modal, ModalBody, ModalFooter } from 'reactstrap'
 
 
@@ -36,7 +36,8 @@ class CharacterCreation extends React.Component {
       id: nameHolder,
       hp: hpHolder,
       attack: attackHolder,
-      modal: false
+      modal: false,
+      modalAlert: false
     })
 
   }
@@ -61,29 +62,37 @@ class CharacterCreation extends React.Component {
   };
 
   handleSubmit = event => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
-    event.preventDefault();
-    console.log('Hello ' + this.state.name + " You have " + this.state.hp + " hp and " + this.state.attack + " attack points.  Good Luck!")
-
-
-    // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-
-    this.setState({
-      modal: !this.state.modal
-    });
+    if (!this.state.name || this.state.hp === '?' || this.state.characterImage === "https://making-the-web.com/sites/default/files/clipart/164002/question-mark-pics-164002-8941717.jpg") {
+      this.setState({
+        modalAlert: !this.state.modalAlert
+      })
+    }
+    else {
+      // Preventing the default behavior of the form submit (which is to refresh the page)
+      event.preventDefault();
+      console.log('Hello ' + this.state.name + " You have " + this.state.hp + " hp and " + this.state.attack + " attack points.  Good Luck!")
+      // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
+      this.setState({
+        modal: !this.state.modal
+      });
+    }
   };
 
   confirmPlayer = event => {
     event.preventDefault();
-    console.log("Go get'em champ")
     this.toggle();
     console.log(this.state)
-    this.props.handleState("shop",this.state)
+    this.props.handleState("battle",null,this.state)
   }
 
   toggle = () => {
     this.setState({
       modal: !this.state.modal,
+    });
+  }
+  toggleAlert = () => {
+    this.setState({
+      modalAlert: !this.state.modalAlert,
     });
   }
 
@@ -93,7 +102,7 @@ class CharacterCreation extends React.Component {
     return (
       <div>
         {/* This is the main container for the screen */}
-        <div className="container vh-100 bg-danger" style={{border: 'solid black 3px'}}>
+        <div className="container vh-100 bg-danger" style={{ border: 'solid black 3px' }}>
           <div className='row'>
             <h1 className="col-lg-12 mb-5" style={{ borderBottom: 'solid black 3px', backgroundColor: 'yellow', padding: '10px', textAlign: 'center' }}>Create Your Fighter</h1>
           </div>
@@ -148,8 +157,6 @@ class CharacterCreation extends React.Component {
                 <Col >
                   <h4>Fighter's Name</h4>
                   <Form.Control className="mb-3" name="name" type="text" value={this.state.name} onChange={this.handleInputChange} placeholder="Input name here" />
-
-
                   {/* This the section where the user's choices are shown for confirmation */}
                   {/* This shows the chosen attributes */}
                   <div className="row">
@@ -224,6 +231,21 @@ class CharacterCreation extends React.Component {
                 <Button className='m-2' variant='outline-danger' onClick={this.toggle}>go back</Button>
                 <Button className='m-2' variant='outline-success' onClick={this.confirmPlayer}>go fight</Button>
               </div>
+            </ModalBody>
+            <ModalFooter />
+          </Modal>
+        </div>
+
+
+        <div>
+          <Modal isOpen={this.state.modalAlert} toggle={this.toggleAlert} className="text-center">
+            <ModalHeader toggle={this.toggleAlert}></ModalHeader>
+            <ModalBody className="text-center" style={{ backgroundColor: 'darkred', color: 'yellow' }}>
+              <h3>{this.state.name}</h3>            
+              <div className="text-center">
+                Fill out all sections!
+              </div>
+              <Button className='m-2' variant='outline-danger' onClick={this.toggleAlert}>go back</Button>
             </ModalBody>
             <ModalFooter />
           </Modal>
