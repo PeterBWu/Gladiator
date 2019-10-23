@@ -11,7 +11,7 @@ import Logo from "./pictures/titlelogo.png";
 import Champion from "./Champion";
 
 class Start extends Component {
-
+  
   render() {
     return (
       <Container className="vh-100 d-flex justify-content-center">
