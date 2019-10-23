@@ -30,21 +30,24 @@ class App extends Component {
   renderGameState = () =>{ 
     switch(this.state.gameState){
       case "create":
-        return (<CharacterCreation handleState={this.handleGameState}/>)
+        return (<CharacterCreation handleState={this.handleGameState} currentState={this.state}/>)
       case "battle":
-        return (<BattleScreen handleState={this.handleGameState}/>)
+        return (<BattleScreen handleState={this.handleGameState} currentState={this.state}/>)
       case "shop":
-        return (<TransitionScreen handleState={this.handleGameState}/>)
+        return (<TransitionScreen handleState={this.handleGameState} currentState={this.state}/>)
       case "end":
-        return (<EndScreen handleState={this.handleGameState}/>)
+        return (<EndScreen handleState={this.handleGameState} currentState={this.state}/>)
       default:
-        return (<Start handleState={this.handleGameState}/>)
+        return (<Start handleState={this.handleGameState} currentState={this.state}/>)
     }
   }
 
-  handleGameState = gameState => {
-    let current = {...this.state}
+  handleGameState = (gameState,characterStat = undefined,isDead=undefined) => {
+    const current = {...this.state}
     current.gameState = gameState
+    if (characterStat){
+      current.characterStat = characterStat
+    }
     switch (gameState) {
       case "create":
         
