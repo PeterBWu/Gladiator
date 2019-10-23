@@ -24,7 +24,7 @@ CREATE TABLE items(
 
 CREATE TABLE portraits(
     port_id INT AUTO_INCREMENT NOT NULL,
-    port_img VARCHAR(255),
+    port_imgitem VARCHAR(255),
     port_sex VARCHAR(1),
     PRIMARY KEY (port_id)
 );

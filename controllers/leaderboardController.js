@@ -32,9 +32,16 @@ module.exports={
                 return res.status(404).send(err);
             }
         }
+    },
+
+    randomChamp:(req, res)=>{
+        const query = `SELECT fields FROM leaderboard ORDER BY RAND() LIMIT 2;`;
+        connection.query(query, champ, (err, response))={
+            if(err){
+                return res.status(404).send(err);
+            }
+        }
     }
-
-
 
 
 
