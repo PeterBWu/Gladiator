@@ -57,8 +57,8 @@ class Shop extends Component {
     );
   };
 
-  handleNextScreen = () => {
-    this.props.handleState("battle")
+  handleNextScreen = (character=undefined) => {
+    this.props.handleState("battle",character)
   };
 
   loadNextScreen = () => {
@@ -70,15 +70,19 @@ class Shop extends Component {
   };
 
   handleBuyPot = potion => {
-    console.log(`${potion.hp} ${potion.atk}`);
-    this.setState({
-      character: {
-        hp: this.state.character.hp + potion.hp,
-        atk: this.state.character.atk + potion.atk
-      }
-    });
+    // console.log(`${potion.hp} ${potion.atk}`);
+    // this.setState({
+    //   character: {
+    //     hp: this.state.character.hp + potion.hp,
+    //     atk: this.state.character.atk + potion.atk
+    //   }
+    // });
+    const character = {...this.props.currentState.characterStat}
+    console.log(character)
+    character.hp += parseInt(potion.hp)
+    character.attack += parseInt(potion.atk)
     console.log(this.state);
-    {this.handleNextScreen()}
+    this.handleNextScreen(character)
   };
 
   render() {
