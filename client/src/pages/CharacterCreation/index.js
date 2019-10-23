@@ -92,11 +92,11 @@ class CharacterCreation extends React.Component {
     return (
       <div>
         {/* This is the main container for the screen */}
-        <div className="container bg-danger" style={{border: 'solid black 3px'}}>
+        <div className="container vh-100 bg-danger" style={{border: 'solid black 3px'}}>
           <div className='row'>
-            <h1 className="col-lg-12" style={{ borderBottom: 'solid black 3px', backgroundColor: 'yellow', padding: '10px', textAlign: 'center' }}>Create Your Fighter</h1>
+            <h1 className="col-lg-12 mb-5" style={{ borderBottom: 'solid black 3px', backgroundColor: 'yellow', padding: '10px', textAlign: 'center' }}>Create Your Fighter</h1>
           </div>
-          <div className="row p-1 m-1">
+          <div className="row p-1 m-1 mt-5">
 
             {/* This is the left sid of the screen container character attributes */}
             <div className="col-4 float-left">
@@ -146,13 +146,13 @@ class CharacterCreation extends React.Component {
               <Form.Row>
                 <Col >
                   <h4>Fighter's Name</h4>
-                  <Form.Control name="name" type="text" value={this.state.name} onChange={this.handleInputChange} placeholder="Input name here" />
+                  <Form.Control className="mb-3" name="name" type="text" value={this.state.name} onChange={this.handleInputChange} placeholder="Input name here" />
 
 
                   {/* This the section where the user's choices are shown for confirmation */}
                   {/* This shows the chosen attributes */}
-                  <div className="ml-5 mt-4 row">
-                    <Card bg="warning" text="dark" style={{ width: '18rem' }} >
+                  <div className="row">
+                    <Card className="ml-3" bg="warning" text="dark" style={{ width: '18rem' }} >
                       <Card.Body>
                         <Card.Title>{this.state.id}</Card.Title>
                         <Card.Text>
