@@ -43,11 +43,14 @@ class App extends Component {
     }
   }
 
-  handleGameState = (gameState,characterStat = undefined,isDead=undefined) => {
+  handleGameState = (gameState,isDead=undefined,characterStat = undefined) => {
     const current = {...this.state}
     current.gameState = gameState
     if (characterStat){
       current.characterStat = characterStat
+    }
+    if (isDead){
+      current.isDead = isDead
     }
     switch (gameState) {
       case "create":

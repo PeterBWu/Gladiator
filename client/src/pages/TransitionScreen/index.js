@@ -12,7 +12,7 @@ function TransitionScreen(props) {
       <Col md={4}>
         <Row>
           <Col>
-          <Ladder round={3} challengers={["a","b","c"]}/>
+          <Ladder round={3} challengers={props.currentState.challengers}/>
           </Col>
         </Row>
       </Col>
