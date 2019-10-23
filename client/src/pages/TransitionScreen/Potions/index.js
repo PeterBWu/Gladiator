@@ -6,13 +6,12 @@ import Button from "react-bootstrap/Button";
 
 const Potions = props => {
   const item = props.item;
-  console.log(`./../.${item.item_img}`)
   return (
     <Col md={4}>
       <Card>
         <Card.Img
           variant="top"
-          src={`/assets/item_img${item.item_img}`}
+          src={item.item_img}
         />
         <Card.Body>
           <Card.Title>{item.item_name}</Card.Title>

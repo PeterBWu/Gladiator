@@ -50,6 +50,8 @@ class App extends Component {
           />
         );
       case "end":
+        
+        this.loadLeaderBoard()
         return (
           <EndScreen
             handleState={this.handleGameState}
@@ -57,11 +59,22 @@ class App extends Component {
           />
         );
       default:
+        
+        this.loadLeaderBoard()
         return (
           <Start handleState={this.handleGameState} currentState={this.state} />
         );
     }
   };
+
+  componentDidMount(){
+    this.loadLeaderBoard()
+  }
+  loadLeaderBoard =() =>{
+    axios.get("/api/leaderboard/count/3")
+      .then(response=> this.setState({challengers:response.data}))
+      .catch(err => console.log(err))
+  }
 
   handleGameState = (
     gameState,
