@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Cinzel', serif;
+  src: local('Cinzel'), url(./assets/fonts/Cinzel-Regular.ttf) format('truetype');
+}
+
+body {
+  background-image: url(./assets/background/arena-sand.png);
+  background-size: 100vw;
+}
+
+.slogan {
+  font-family: 'Cinzel';
+  font-size: 2rem;
+  font-variant: small-caps;
+}
+
+.gladiator-font {
+  font-family: 'Cinzel';
+  font-size: 2rem;
+}
