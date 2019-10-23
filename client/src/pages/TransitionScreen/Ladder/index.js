@@ -1,21 +1,26 @@
-import React from 'react'
+import React from "react";
 
 // import Col from 'react-bootstrap/Col'
 // import Row from 'react-bootstrap/Row'
 
-import LadderStep from './../LadderStep'
+import LadderStep from "./../LadderStep";
 
+const Ladder = props => {
+  return (
+    <div>
+      {props.challengers.map((challenger, index) => (
+        <LadderStep
+          key={index}
+          rank={index + 1}
+          isDead={props.round<= props.challengers.length -index ? true: false}
+          nextFighter={
+            props.round + 1 === props.challengers.length - index ? true : false
+          }
+          challenger={challenger}
+        />
+      ))}
+    </div>
+  );
+};
 
-const Ladder = (props) => {
-    return(
-        <div>
-            {
-                props.challengers.map((challenger,index) => <LadderStep key={index} active={props.round===(props.challengers.length-index) ? "true":"false"} fighter={challenger} />)
-            }
-            
-        </div>
-    )
-}
-
-
-export default Ladder
+export default Ladder;
