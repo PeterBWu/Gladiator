@@ -27,5 +27,18 @@ module.exports={
                 const port=items[0];
                 res.json(port);
             });
-        }
+        },
+        
+    getRandomItems: (req, res)=>{
+        const count=req.params.count;
+        const query = `SELECT * FROM items ORDER BY RAND() LIMIT ?;`;
+        connection.query(query, parseInt(count), (err, items)=>{
+            if(err){
+                return res.status(404).send(err);
+            }
+            res.json(items);
+        });
+    },
+
+
 }

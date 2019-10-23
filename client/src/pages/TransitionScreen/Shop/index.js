@@ -1,91 +1,47 @@
 import React, { Component } from "react";
-
+import axios from 'axios';
 import Row from "react-bootstrap/Row";
 
 import Potions from "./../Potions";
 class Shop extends Component {
   state = {
-    inShop: false,
-    character: { hp: 10, atk: 20 },
-    potions: [
-      {
-        id: 1,
-        name: "Pot of balanced",
-        hp: 30,
-        atk: 30
-      },
-      {
-        id: 2,
-        name: "Pot of health",
-        hp: 40,
-        atk: 20
-      },
-      {
-        id: 3,
-        name: "Pot of attack",
-        hp: 20,
-        atk: 40
-      }
-    ]
+    items: []
   };
 
-  loadShop = () => {
+  componentDidMount() {
+    axios.get("/api/items/rand/3")
+      .then(response=> this.setState({items:response.data}))
+      .catch(err=>console.log(err))
+  }
+
+  handleNextScreen = (character = this.props.characterStat) => {
+    this.props.handleState("battle", null, character);
+  };
+
+  handleBuyPot = item => {
+    const character = { ...this.props.currentState.characterStat };
+    console.log(character);
+    character.hp += parseInt(item.item_hp);
+    character.attack += parseInt(item.item_atk);
+    console.log(this.state);
+    this.handleNextScreen(character);
+  };
+
+  render() {
     return (
       <div>
         <h1>The shop</h1>
         <Row>
-          {this.state.potions.map(potion => (
+          {this.state.items.map(item => (
             <Potions
-              potion={potion}
-              key={potion.id}
-              handleClick={() => this.handleBuyPot(potion)}
+              item={item}
+              key={item.item_id}
+              handleClick={() => this.handleBuyPot(item)}
             />
           ))}
         </Row>
-        {this.loadNextScreen()}
       </div>
     );
-  };
-
-  loadWaitScreen = () => {
-    return (
-      <div>
-        <button onClick={this.handleOnShopClick}>Shop</button>
-        {this.loadNextScreen()}
-      </div>
-    );
-  };
-
-  handleNextScreen = (character=this.props.characterStat) => {
-    this.props.handleState("battle",null,character)
-  };
-
-  loadNextScreen = () => {
-    return <button onClick={this.handleNextScreen}> next screen</button>;
-  };
-
-  handleOnShopClick = () => {
-    this.setState({ inShop: true });
-  };
-
-  handleBuyPot = potion => {
-    // console.log(`${potion.hp} ${potion.atk}`);
-    // this.setState({
-    //   character: {
-    //     hp: this.state.character.hp + potion.hp,
-    //     atk: this.state.character.atk + potion.atk
-    //   }
-    // });
-    const character = {...this.props.currentState.characterStat}
-    console.log(character)
-    character.hp += parseInt(potion.hp)
-    character.attack += parseInt(potion.atk)
-    console.log(this.state);
-    this.handleNextScreen(character)
-  };
-
-  render() {
-    return <div>{this.state.inShop ? this.loadShop() : this.loadWaitScreen()}</div>;
   }
 }
 

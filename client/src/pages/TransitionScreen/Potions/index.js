@@ -5,22 +5,23 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
 const Potions = props => {
-  const potion = props.potion;
+  const item = props.item;
+  console.log(`./../.${item.item_img}`)
   return (
     <Col md={4}>
       <Card>
         <Card.Img
           variant="top"
-          src="https://cdn2.iconfinder.com/data/icons/helloween-1/100/potion-07-512.png"
+          src={`/assets/item_img${item.item_img}`}
         />
         <Card.Body>
-          <Card.Title>{potion.name}</Card.Title>
+          <Card.Title>{item.item_name}</Card.Title>
           <Card.Text>
-            This potion will increase your hp by {potion.hp} and atk by{" "}
-            {potion.atk}
+            This potion will increase your hp by {item.item_hp} and atk by{" "}
+            {item.item_atk}
           </Card.Text>
           <Button variant="primary" onClick={props.handleClick}>
-            Buy Potion
+            Buy Item
           </Button>
         </Card.Body>
       </Card>
