@@ -25,7 +25,7 @@ button{
 #three:hover{
   background-color: yellow;
 }
-#four:hover{
+#four:active{
   animation: shake 0.5s;
   background-color: yellow;
 }
