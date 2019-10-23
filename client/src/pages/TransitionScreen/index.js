@@ -19,7 +19,7 @@ function TransitionScreen(props) {
       <Col md={8}>
           <Row>
               <Col>
-                <Shop handleState={props.handleState} />
+                <Shop handleState={props.handleState} currentState={props.currentState}/>
               </Col>
           </Row>
       </Col>
