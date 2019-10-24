@@ -9,8 +9,8 @@ module.exports={
             if(err){
                 return res.status(404).send(err);
             }
-            const port=portraits[0];
-            res.json(port);
+
+            res.json(portraits);
         });
     }
 

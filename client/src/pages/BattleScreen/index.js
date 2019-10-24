@@ -1,10 +1,10 @@
 import React from 'react'
 import './style.css'
-import { Card, Form, Col, Row, Image, Button, Container } from 'react-bootstrap'
+import { Card, Row, Container } from 'react-bootstrap'
 import ImageCard from './../CharacterCreation/ImageCard'
 import BattleCard from './BattleCard'
 import FightButton from './FightButton'
-import { runInThisContext } from 'vm'
+
 
 
 
@@ -12,8 +12,8 @@ import { runInThisContext } from 'vm'
 
 const style = {
   image: {
-    height: '28vh',
-    width: '13vw',
+    backgroundPosition: 'center',
+    backgourndSize: 'auto-fill'
   }
 }
 
@@ -36,9 +36,9 @@ class BattleScreen extends React.Component {
   }
 
   checkUserLose = (userHp) => {
-    if (userHp <= 0) {
-      this.props.handleState('end')
-    }
+      if (userHp <= 0){
+        this.props.handleState('end', true)
+      }
   }
 
   checkOpponentLose = (opponentHp) => {
@@ -111,6 +111,7 @@ class BattleScreen extends React.Component {
                       <BattleCard name={this.state.currentOpponent.leader_name}
                         hp={this.state.opponentHp}
                         attack={this.state.currentOpponent.leader_atk}
+                        style={style.image}
                       />
                     </div>
                   </div>
@@ -143,9 +144,13 @@ class BattleScreen extends React.Component {
 
 
                 <div classname="row">
-                  <div className="col-md-12">
-                    <div
-                      style={{ width: `${(this.state.userHp / this.state.userMaxHp) * 100}%`, height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+                    <div className="col-md-12">
+                      <div
+                        style={{ width: `${(this.state.userHp / this.state.userMaxHp) * 100}%`, 
+                        height: '9vh', 
+                        backgroundColor: 'green', 
+                        border: 'dotted blue 5px' }}>
+                      </div>
                     </div>
                   </div>
                 </div>
