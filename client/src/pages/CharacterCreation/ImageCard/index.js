@@ -11,11 +11,11 @@ const style = {
 
 
 const ImageCard = (props) => {
-  console.log(props.items && props.items.src)
+
 
   return (
     
-      <Col xs={3} md={3}>
+      <Col xs={parseInt(props.size)} md={parseInt(props.size)}>
         <Image src={props.items && props.items.src || props.src} 
         onClick={props.onClick} 
         style={style.image} 
