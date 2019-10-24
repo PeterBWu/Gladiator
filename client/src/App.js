@@ -43,15 +43,17 @@ class App extends Component {
           />
         );
       case "shop":
-        return (
-          <TransitionScreen
-            handleState={this.handleGameState}
-            currentState={this.state}
-          />
-        );
+        if (this.state.round === 3) {
+          this.handleGameState("end");
+        } else {
+          return (
+            <TransitionScreen
+              handleState={this.handleGameState}
+              currentState={this.state}
+            />
+          );
+        }
       case "end":
-        
-        this.loadLeaderBoard()
         return (
           <EndScreen
             handleState={this.handleGameState}
@@ -59,29 +61,24 @@ class App extends Component {
           />
         );
       default:
-        
-        this.loadLeaderBoard()
         return (
           <Start handleState={this.handleGameState} currentState={this.state} />
         );
     }
   };
 
-  componentDidMount(){
-    this.loadLeaderBoard()
-  }
-  loadLeaderBoard =() =>{
-    axios.get("/api/leaderboard/count/3")
-      .then(response=> this.setState({challengers:response.data}))
-      .catch(err => console.log(err))
+  componentDidMount() {
+    this.handleGameState("start");
   }
 
-  handleGameState = (
+  handleGameState = async (
     gameState,
     isDead = undefined,
     characterStat = undefined
   ) => {
-    const current = { ...this.state };
+    let current = { ...this.state };
+    let challangersRes = {};
+    let challengers = [];
     current.gameState = gameState;
     if (characterStat) {
       current.characterStat = characterStat;
@@ -99,24 +96,34 @@ class App extends Component {
         break;
 
       case "end":
+        try {
+          challangersRes = await axios.get("/api/leaderboard/count/3");
+          challengers = challangersRes.data;
+          current.challengers = challengers;
+        } catch (e) {
+          console.log(e);
+        }
         break;
 
       default:
+        try {
+          challangersRes = await axios.get("/api/leaderboard/count/3");
+          challengers = challangersRes.data;
+        } catch (e) {
+          console.log(e);
+          challengers = [{}];
+        }
         current = {
           gameState: "start",
           round: 0,
           isDead: false,
           characterStat: {},
-          challengers: []
+          challengers
         };
     }
     console.log({ ...current });
     this.setState({ ...current });
   };
-
-  componentDidMount() {
-    // initial fire once component mounts
-  }
 
   render() {
     return (
