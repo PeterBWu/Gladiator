@@ -3,14 +3,6 @@ const leaderboardController = require('./../../../controllers/leaderboardControl
 
 
 // /api/items
-// router.route('/')
-//     .get(leaderboardController.getLeaderboard)
-//     .get(leaderboardController.currentChamp)
-//     .get(leaderboardController.randomChamps)
-//     .post(leaderboardController.newChampion)
-
-router.route("/count/:count")
-    .get(leaderboardController.lastEntries)
-
-
+router.route('/')
+    .get(leaderboardController.getLeaderboard)
 module.exports = router;

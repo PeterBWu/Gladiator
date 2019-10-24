@@ -2,9 +2,10 @@ const connection= require('./../config/connections.js');
 
 module.exports={
 
-    // call leaderboard, get last 10 entries on leaderboard
+// getLeaderboard
     getLeaderboard: (req, res)=>{
-        const query = `SELECT * FROM leaderboard ORDER BY PRIMARY KEY DESC LIMIT 10`;
+        console.log("getleaderboard runs");
+        const query = `SELECT * FROM leaderboard ORDER BY leader_id DESC;`;
         connection.query(query, (err, leaderboard)=>{
             if(err){
                 return res.status(404).send(err);
@@ -23,42 +24,6 @@ module.exports={
             }
         }
     },
-
-
-    currentChamp:(req, res)=>{
-        const query = `SELECT fields FROM leaderboard ORDER BY PRIMARY KEY DESC LIMIT 1;`;
-        connection.query(query, champ, (err, response))={
-            if(err){
-                return res.status(404).send(err);
-            }
-        }
-    },
-
-    randomChamps:(req, res)=>{
-        const query = `SELECT fields FROM leaderboard ORDER BY RAND() LIMIT 2;`;
-        connection.query(query, champ, (err, response))={
-            if(err){
-                return res.status(404).send(err);
-            }
-        }
-    },
-    lastEntries:(req, res)=>{
-        const challengers = parseInt(req.params.count)
-        const query = `SELECT * FROM leaderboard ORDER BY leader_id DESC LIMIT ?;`;
-        connection.query(query, challengers, (err, response)=>{
-            if(err){
-                return res.status(404).send(err);
-            }
-            
-            res.json(response)
-        })
-    }
-
-
-
-
-
-
 
 
 };
