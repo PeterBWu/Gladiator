@@ -37,5 +37,5 @@ VALUES
 ("./../assets/portraits_new/port_f3.png", "f"),
 ("./../assets/portraits_new/port_f4.png", "f"),
 ("./../assets/portraits_new/port_f5.png", "f"),
-("./../assets/portraits_new/port_f6.jpg", "f"),
-("./../assets/portraits_new/port_f7.jpg", "f");
+("./../assets/portraits_new/port_f6.png", "f"),
+("./../assets/portraits_new/port_f7.png", "f");
