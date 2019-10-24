@@ -96,7 +96,7 @@ class App extends Component {
 
       case "end":
         try {
-          if (!this.state.isDead){
+          if (!isDead){
             let addChamp = await axios.post("/api/leaderboard/", {
               leader_name: this.state.characterStat.name,
               leader_portrait: this.state.characterStat.characterImage,
