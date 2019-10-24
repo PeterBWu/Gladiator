@@ -16,7 +16,7 @@ const ImageCard = (props) => {
   return (
     
       <Col xs={parseInt(props.size)} md={parseInt(props.size)}>
-        <Image src={props.items && props.items.src || props.src} 
+        <Image src={props.items && props.items.port_img|| props.src} 
         onClick={props.onClick} 
         style={style.image} 
         id={props.id} 
