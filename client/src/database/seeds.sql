@@ -22,7 +22,8 @@ VALUES
 ("Blade of Irresistable Force", "./../assets/item_img/sword.jpg", +20, -10),
 ("Shield of the Immovable Object", "./../assets/item_img/shield.png", -10, 20);
 
-INSERT INTO portraits (port_imgitem, port_sex)
+
+INSERT INTO portraits (port_img, port_sex)
 VALUES
 ("./../assets/portraits_new/port_m1.jpg", "m"),
 ("./../assets/portraits_new/port_m2.jpg", 'm'),
