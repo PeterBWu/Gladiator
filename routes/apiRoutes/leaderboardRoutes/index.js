@@ -4,5 +4,8 @@ const leaderboardController = require('./../../../controllers/leaderboardControl
 
 // /api/items
 router.route('/')
-    .get(leaderboardController.getLeaderboard)
+    .get(leaderboardController.getLeaderboard);
+
+    router.route('/post')
+    .post(leaderboardController.newChampion);
 module.exports = router;
