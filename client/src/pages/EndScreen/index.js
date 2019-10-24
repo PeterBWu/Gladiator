@@ -4,8 +4,27 @@ import { Container, Row, Col, Button } from "react-bootstrap"
 // class EndScreen extends React.Component {
 
 // }
+function Redirect() {
+window.location = "/"
+}
 
 function EndScreen(props) {
+  console.log(props)
+  // console.log(props.currentState.isDead)
+  console.log(props.currentState.characterStat.characterImage)
+  console.log(props.currentState.characterStat.name)
+  console.log(props.currentState.challengers[0]) // {...}
+  console.log(props.currentState.challengers[0].leader_name)
+  console.log(props.currentState.challengers[0].leader_portrait)
+
+
+  let status
+  if (props.currentState.isDead) {
+    status = "You Lose"
+  }
+  else {
+    status = "You Win"
+  }
   return (
     // <div className={styles.div}>
     //   <h1> YOU WIN </h1>
@@ -13,19 +32,31 @@ function EndScreen(props) {
     <Container className={styles.container}>
       <Row>
         <Col className={styles.results}>
-          <h1 className={styles.child}>you win/you died</h1>
+          <h1 className={styles.child}>{status}</h1>
         </Col>
       </Row>
       <Row>
-        <Col className={styles.victors}><h2>victors placment</h2></Col>
-        <Col className={styles.leader}><h2>leaderboard</h2></Col>
+        <Col className={styles.victors}>
+          <h2>{props.currentState.characterStat.name}</h2>
+          <img className={styles.victors} src={props.currentState.characterStat.characterImage} alt="Character Image" />
+        </Col>
+        <Col className={styles.leader}>
+          {
+            props.currentState.challengers.map(
+              challenger => (
+                <>
+                  <h2>{challenger.leader_name}</h2>
+                  <img className={styles.leader} src={challenger.leader_portrait} alt="Character Image" />
+                </>
+              )
+            )
+          }
+
+        </Col>
       </Row>
       <Row>
         <Col className={styles.button}>
-          <Button>Play Again!</Button>
-        </Col>
-        <Col className={styles.button}>
-          <Button>Quit</Button>
+          <Button onClick={Redirect} >Play Again!</Button>
         </Col>
 
       </Row>
