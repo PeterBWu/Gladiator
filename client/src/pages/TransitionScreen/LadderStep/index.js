@@ -13,10 +13,10 @@ const LadderStep = props => {
         <Card>
           <Card.Img
             variant="top"
-            src= {props.isDead? "https://cdn2.iconfinder.com/data/icons/helloween-1/100/potion-07-512.png": "https://banner2.cleanpng.com/20180514/cvq/kisspng-skull-and-bones-skull-and-crossbones-royalty-free-5af9d88acfa0c5.5387879115263233388505.jpg"}
+            src= {props.isDead?  "https://banner2.cleanpng.com/20180514/cvq/kisspng-skull-and-bones-skull-and-crossbones-royalty-free-5af9d88acfa0c5.5387879115263233388505.jpg":props.challenger.leader_portrait}
           />
           <Card.Body>
-            <Card.Title>{props.challenger.name}</Card.Title>
+            <Card.Title>{props.challenger.leader_name}</Card.Title>
             <Card.Subtitle>Rank: {props.rank}</Card.Subtitle>
             <Card.Text>
               {props.nextFighter ? "Coming Up Next!" : null}
