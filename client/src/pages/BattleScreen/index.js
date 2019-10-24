@@ -27,15 +27,23 @@ class BattleScreen extends React.Component {
     oppHealthCounter: 1,
     playerHealthCounter: 1,
     userHp: this.props.currentState.characterStat.hp,
+    userMaxHp: this.props.currentState.characterStat.hp,
     currentOpponent: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1],
-    opponentHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp
+    opponentMaxHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
+    opponentHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
+
 
   }
 
-  checkForWin = (round) => {
-    console.log('Round - ' + round)
-    if (round === 4) {
+  checkUserLose = (userHp) => {
+    if (userHp <= 0) {
       this.props.handleState('end')
+    }
+  }
+
+  checkOpponentLose = (opponentHp) => {
+    if (opponentHp <= 0) {
+      this.props.handleState('shop')
     }
   }
 
@@ -44,9 +52,9 @@ class BattleScreen extends React.Component {
       console.log('lowerthan0')
       this.props.handleState('end', true)
     }
-    console.log(this.props.currentState.challengers[0])
+
     let randomNumber = Math.floor(Math.random() * 3) + 1
-    switch (1) {
+    switch (randomNumber) {
       case 1:
         if (parseInt(this.state.userHp) <= 0) {
           this.props.handleState('end', true)
@@ -57,36 +65,6 @@ class BattleScreen extends React.Component {
           textResult: 'You Took Damage',
           visualResult: 'https://cdn1.vectorstock.com/i/1000x1000/86/35/comic-boom-ouch-icon-flat-style-vector-19368635.jpg'
         })
-        console.log(this.state.userHp)
-        if (parseInt(this.state.userHp) > 25) {
-          this.setState({
-            playerHealth: 'col-10'
-          })
-        }
-        else if (parseInt(this.state.userHp) > 20) {
-          this.setState({
-            playerHealth: 'col-8'
-          })
-        }
-        else if (parseInt(this.state.userHp) > 15) {
-          this.setState({
-            playerHealth: 'col-6'
-          })
-        }
-        else if (parseInt(this.state.userHp) > 10) {
-          console.log(this.state.userHp)
-          this.setState({
-            playerHealth: 'col-4'
-          })
-        }
-        else if (parseInt(this.state.userHp) > 0) {
-          this.setState({
-            playerHealth: 'col-2'
-          })
-        }
-        else if (parseInt(this.state.userHp) <= 0) {
-          this.props.handleState('end', true)
-        }
         break;
       case 2:
         if (this.state.opponentHp < 0) {
@@ -98,34 +76,6 @@ class BattleScreen extends React.Component {
           textResult: 'You Cause Damage',
           visualResult: 'http://www.clipartbest.com/cliparts/9cz/6Xx/9cz6Xxryi.jpg',
         })
-        if (parseInt(this.state.opponentHp) > 25) {
-          this.setState({
-            oppentHealth: 'col-10'
-          })
-        }
-        else if (parseInt(this.state.opponentHp) >= 20) {
-          this.setState({
-            oppentHealth: 'col-8'
-          })
-        }
-        else if (parseInt(this.state.opponentHp) >= 15) {
-          this.setState({
-            oppentHealth: 'col-6'
-          })
-        }
-        else if (parseInt(this.state.opponentHp) >= 10) {
-          this.setState({
-            oppentHealth: 'col-4'
-          })
-        }
-        else if (parseInt(this.state.opponentHp) > 0) {
-          this.setState({
-            oppentHealth: 'col-2'
-          })
-        }
-        else if (parseInt(this.state.opponentHp) <= 0) {
-          this.props.handleState('shop')
-        }
         break;
       case 3:
         this.setState({
@@ -139,7 +89,8 @@ class BattleScreen extends React.Component {
 
   render() {
     // { this.checkForWin(this.props.currentState.round) }
-
+    { this.checkUserLose(this.state.userHp) }
+    { this.checkOpponentLose(this.state.opponentHp) }
     return (
       <div className="container 100vh d-flex justify-content-center text-center mt-2">
         <div className="row bg-danger">
@@ -156,14 +107,24 @@ class BattleScreen extends React.Component {
                 </div>
                 <div className="col-lg-6">
                   <div className="row">
-                    <BattleCard name={this.state.currentOpponent.leader_name}
-                      hp={this.state.opponentHp}
-                      attack={this.state.currentOpponent.leader_atk}
-                    />
-
-
-                    <div className={this.state.oppentHealth}
-                      style={{ height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+                    <div className="col-md-12">
+                      <BattleCard name={this.state.currentOpponent.leader_name}
+                        hp={this.state.opponentHp}
+                        attack={this.state.currentOpponent.leader_atk}
+                      />
+                    </div>
+                  </div>
+                  <div classname="row">
+                    <div className="col-md-12">
+                      <div
+                        style={{
+                          width: `${(this.state.opponentHp / this.state.opponentMaxHp) * 100}%`,
+                          height: '9vh',
+                          backgroundColor: 'green',
+                          border: 'dotted blue 5px'
+                        }}
+                      >
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -177,10 +138,19 @@ class BattleScreen extends React.Component {
               <div className="col-xs-6 col-md-6">
                 <BattleCard name={this.props.currentState.characterStat.name}
                   hp={this.state.userHp}
-                  attack={this.props.currentState.characterStat.attack} />
-                <div className={this.state.playerHealth}
-                  style={{ height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+                  attack={this.props.currentState.characterStat.attack}
+                />
+
+
+                <div classname="row">
+                  <div className="col-md-12">
+                    <div
+                      style={{ width: `${(this.state.userHp / this.state.userMaxHp) * 100}%`, height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+                    </div>
+                  </div>
                 </div>
+
+
               </div>
               <div className="col-xs-6 colmd-6">
                 <div className="card">
