@@ -28,9 +28,9 @@ class BattleScreen extends React.Component {
     playerHealthCounter: 1,
     userHp: this.props.currentState.characterStat.hp,
     userMaxHp: this.props.currentState.characterStat.hp,
-    currentOpponent: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1],
-    opponentMaxHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
-    opponentHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
+    currentOpponent: [...this.props.currentState.challengers].reverse()[this.props.currentState.round - 1],
+    opponentMaxHp: [...this.props.currentState.challengers].reverse()[this.props.currentState.round - 1].leader_hp,
+    opponentHp: [...this.props.currentState.challengers].reverse()[this.props.currentState.round - 1].leader_hp,
 
 
   }
@@ -54,7 +54,7 @@ class BattleScreen extends React.Component {
     }
 
     let randomNumber = Math.floor(Math.random() * 3) + 1
-    switch (randomNumber) {
+    switch (2) {
       case 1:
         if (parseInt(this.state.userHp) <= 0) {
           this.props.handleState('end', true)
@@ -188,7 +188,8 @@ class BattleScreen extends React.Component {
             </div>
           </div>
         </div>
-      </div >
+     
+    
     )
   }
 }
