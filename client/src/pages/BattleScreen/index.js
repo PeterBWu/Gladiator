@@ -27,8 +27,11 @@ class BattleScreen extends React.Component {
     oppHealthCounter: 1,
     playerHealthCounter: 1,
     userHp: this.props.currentState.characterStat.hp,
+    userMaxHp: this.props.currentState.characterStat.hp,
     currentOpponent: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1],
-    opponentHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp
+    opponentMaxHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
+    opponentHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
+
 
   }
 
@@ -51,7 +54,7 @@ class BattleScreen extends React.Component {
     }
 
     let randomNumber = Math.floor(Math.random() * 3) + 1
-    switch (2) {
+    switch (randomNumber) {
       case 1:
         if (parseInt(this.state.userHp) <= 0) {
           this.props.handleState('end', true)
@@ -104,14 +107,24 @@ class BattleScreen extends React.Component {
                 </div>
                 <div className="col-lg-6">
                   <div className="row">
-                    <BattleCard name={this.state.currentOpponent.leader_name}
-                      hp={this.state.opponentHp}
-                      attack={this.state.currentOpponent.leader_atk}
-                    />
-
-
-                    <div className={this.state.oppentHealth}
-                      style={{ height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+                    <div className="col-md-12">
+                      <BattleCard name={this.state.currentOpponent.leader_name}
+                        hp={this.state.opponentHp}
+                        attack={this.state.currentOpponent.leader_atk}
+                      />
+                    </div>
+                  </div>
+                  <div classname="row">
+                    <div className="col-md-12">
+                      <div
+                        style={{
+                          width: `${(this.state.opponentHp / this.state.opponentMaxHp) * 100}%`,
+                          height: '9vh',
+                          backgroundColor: 'green',
+                          border: 'dotted blue 5px'
+                        }}
+                      >
+                      </div>
                     </div>
                   </div>
                 </div>
