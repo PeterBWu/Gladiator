@@ -24,17 +24,17 @@ VALUES
 
 INSERT INTO portraits (port_imgitem, port_sex)
 VALUES
-("./../assets/portraits_new/port_m1.jpg", "m"),
-("./../assets/portraits_new/port_m2.jpg", 'm'),
-("./../assets/portraits_new/port_m3.jpg", 'm'),
-("./../assets/portraits_new/port_m4.jpg", 'm'),
+("./../assets/portraits_new/port_m1.png", "m"),
+("./../assets/portraits_new/port_m2.png", 'm'),
+("./../assets/portraits_new/port_m3.png", 'm'),
+("./../assets/portraits_new/port_m4.png", 'm'),
 ("./../assets/portraits_new/port_m5.png", 'm'),
-("./../assets/portraits_new/port_m6.jpg", 'm'),
-("./../assets/portraits_new/port_m7.jpg", 'm'),
-("./../assets/portraits_new/port_f1.jpg", "f"),
-("./../assets/portraits_new/port_f2.jpg", "f"),
-("./../assets/portraits_new/port_f3.jpg", "f"),
-("./../assets/portraits_new/port_f4.jpg", "f"),
+("./../assets/portraits_new/port_m6.png", 'm'),
+("./../assets/portraits_new/port_m7.png", 'm'),
+("./../assets/portraits_new/port_f1.png", "f"),
+("./../assets/portraits_new/port_f2.png", "f"),
+("./../assets/portraits_new/port_f3.png", "f"),
+("./../assets/portraits_new/port_f4.png", "f"),
 ("./../assets/portraits_new/port_f5.png", "f"),
-("./../assets/portraits_new/port_f6.jpg", "f"),
-("./../assets/portraits_new/port_f7.jpg", "f");
+("./../assets/portraits_new/port_f6.png", "f"),
+("./../assets/portraits_new/port_f7.png", "f");
