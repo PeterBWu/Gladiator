@@ -45,13 +45,16 @@ class App extends Component {
       case "shop":
           if(this.state.round === 3){
             this.handleGameState("end")
+
+          }else{
+            return (
+              <TransitionScreen
+                handleState={this.handleGameState}
+                currentState={this.state}
+              />
+            );
+    
           }
-        return (
-          <TransitionScreen
-            handleState={this.handleGameState}
-            currentState={this.state}
-          />
-        );
       case "end":
         
         this.loadLeaderBoard()
