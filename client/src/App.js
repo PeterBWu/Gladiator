@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
-import mysql from "mysql";
 
 // Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -53,6 +51,7 @@ class App extends Component {
             />
           );
         }
+        break;
       case "end":
         return (
           <EndScreen
@@ -97,6 +96,14 @@ class App extends Component {
 
       case "end":
         try {
+          if (!this.state.isDead){
+            let addChamp = await axios.post("/api/leaderboard/", {
+              leader_name: this.state.characterStat.name,
+              leader_portrait: this.state.characterStat.characterImage,
+              leader_atk: this.state.characterStat.attack,
+              leader_hp: this.state.characterStat.hp
+            });  
+          }
           challangersRes = await axios.get("/api/leaderboard/count/3");
           challengers = challangersRes.data;
           current.challengers = challengers;
@@ -126,13 +133,7 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <Router>
-        <Container>
-          <Switch>{this.renderGameState()}</Switch>
-        </Container>
-      </Router>
-    );
+    return <Container>{this.renderGameState()}</Container>;
   }
 }
 
