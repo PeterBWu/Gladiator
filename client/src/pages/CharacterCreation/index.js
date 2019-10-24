@@ -3,6 +3,8 @@ import './style.css'
 import { Card, Form, Col, Row, Image, Button, Toast } from 'react-bootstrap'
 import { ModalHeader, Modal, ModalBody, ModalFooter } from 'reactstrap'
 import ImageCard from './ImageCard'
+import FightStyle from './FightStyle'
+import BattleCard from './../BattleScreen/BattleCard'
 
 
 
@@ -25,7 +27,7 @@ class CharacterCreation extends React.Component {
         id: 'two'
       },
       {
-        src: "https://i.pinimg.com/originals/15/bf/2c/15bf2c34a60b6665123d46df52ede554.jpg" ,
+        src: "https://i.pinimg.com/originals/15/bf/2c/15bf2c34a60b6665123d46df52ede554.jpg",
         id: 'three'
       },
       {
@@ -119,42 +121,27 @@ class CharacterCreation extends React.Component {
             {/* This is the left sid of the screen container character attributes */}
             <div className="col-4 float-left">
               <h4>Choose Your Fighting Style</h4>
-              <Button id="Archer-40-20" variant="outline-warning" text="light" style={{ width: '18rem' }} onClick={this.handleAttributeClick}>
-                <Card.Body>
-                  <Card.Title className="text-left">Archer</Card.Title>
-                  <Card.Text>
-                    <div className='ml-3'>
-                      <Row hp='40'>HP = 40</Row>
-                      <Row attack='20'>Attack = 20</Row>
-                    </div>
-                  </Card.Text>
-                </Card.Body>
-              </Button>
-              <br />
-              <Button hp={20} attack={40} variant="outline-warning" id="Warrior-20-40" btn="success" text="light" style={{ width: '18rem' }} onClick={this.handleAttributeClick}>
-                <Card.Body>
-                  <Card.Title className="text-left">Warrior</Card.Title>
-                  <Card.Text>
-                    <div className='ml-3'>
-                      <Row>HP = 20</Row>
-                      <Row>Attack = 40</Row>
-                    </div>
-                  </Card.Text>
-                </Card.Body>
-              </Button>
-              <br />
-              <Button hp='30' attack='30' variant="outline-warning" id="Captain-30-30" btn="info" text="light" style={{ width: '18rem' }} onClick={this.handleAttributeClick}>
-                <Card.Body>
-                  <Card.Title className="text-left" >Captain</Card.Title>
-                  <Card.Text>
-                    <div className='ml-3'>
-                      <Row>HP = 30</Row>
-                      <Row>Attack = 30</Row>
-                    </div>
-                  </Card.Text>
-                </Card.Body>
-              </Button>
-              <br />
+
+              <FightStyle id="Archer-40-20"
+                onClick={this.handleAttributeClick}
+                name="Archer"
+                hp="40"
+                attack="20"
+              />
+
+              <FightStyle id="Warrior-20-40"
+                onClick={this.handleAttributeClick}
+                name="Warrior"
+                hp="20"
+                attack="40"
+              />
+
+              <FightStyle id="Captain-30-30"
+                onClick={this.handleAttributeClick}
+                name="Captain"
+                hp="30"
+                attack="30"
+              />
             </div>
 
 
@@ -177,18 +164,18 @@ class CharacterCreation extends React.Component {
                       <Card.Body>
                         <Card.Title>{this.state.id}</Card.Title>
                         <Card.Text>
-                          <div className='ml-3'>
-                            <Row>HP = {this.state.hp}</Row>
-                            <Row>Attack = {this.state.attack}</Row>
-                          </div>
+                          <span className='ml-3'>
+                            <span className="row">HP = {this.state.hp}</span>
+                            <span className="row">Attack = {this.state.attack}</span>
+                          </span>
                         </Card.Text>
                       </Card.Body>
                     </Card>
 
                     {/* This shows the chosen image */}
-                  
-                      <ImageCard size='3' src={this.state.characterImage}/>
-                  
+
+                    <ImageCard size='3' src={this.state.characterImage} />
+
 
                     {/* This is the confirmation button that adds character to database and
                     starts the game play */}
@@ -206,9 +193,9 @@ class CharacterCreation extends React.Component {
               {/* This is the section with the character image options  */}
               <h4 className="p-1">Choose your Character's Image</h4>
               <Row className="mt-2">
-              {
-                this.state.characterArray.map(card => <ImageCard items={card} onClick={this.handleImageClick} size='3'/>)
-              }
+                {
+                  this.state.characterArray.map((card,index) => <ImageCard key={index} items={card} onClick={this.handleImageClick} size='3' />)
+                }
               </Row>
             </Form>
           </div>
