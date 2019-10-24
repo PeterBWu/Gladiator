@@ -4,7 +4,7 @@ module.exports={
 
     // random portrait
     getRandomPortrait: (req, res)=>{
-        const query = `SELECT port_img FROM portraits ORDER BY RAND() LIMIT 1`;
+        const query = `SELECT port_img FROM portraits ORDER BY RAND() LIMIT 4`;
         connection.query(query, (err, portraits)=>{
             if(err){
                 return res.status(404).send(err);
