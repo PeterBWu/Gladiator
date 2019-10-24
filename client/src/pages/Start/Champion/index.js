@@ -12,7 +12,7 @@ function Champion(props) {
         text="light" 
         className="border-0" 
         style={{  width:`250px`,
-                  height:`250px`  }}>
+                  height:`300px`  }}>
         <Card.Body style={{ paddingTop:`0px` }}>
           <Card.Text className="text-center gladiator-font">
             Current Champion:<br/>{props.champion.leader_name}
@@ -24,7 +24,7 @@ function Champion(props) {
           style={{  width:`auto`,
                     height:`250px`,
                     backgroundSize:`cover`,
-                    backgroundPosition:`top center`, 
+                    backgroundPosition:`top -100px center`, 
                     backgroundRepeat:`no-repeat`, 
                     backgroundImage:`url('${props.champion.leader_portrait}')` }} 
         />
