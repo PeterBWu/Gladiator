@@ -112,9 +112,9 @@ class CharacterCreation extends React.Component {
         {/* This is the main container for the screen */}
         <div className="container vh-100 bg-danger" style={{ border: 'solid black 3px' }}>
           <div className='row'>
-            <h1 className="col-lg-12 mb-5" style={{ borderBottom: 'solid black 3px', backgroundColor: 'yellow', padding: '10px', textAlign: 'center' }}>Create Your Fighter</h1>
+            <h1 className="col-lg-12 mb-1" style={{ borderBottom: 'solid black 3px', backgroundColor: 'yellow', padding: '10px', textAlign: 'center' }}>Create Your Fighter</h1>
           </div>
-          <div className="row p-1 m-1 mt-5">
+          <div className="row p-1 m-1 mt-1">
 
             {/* This is the left sid of the screen container character attributes */}
             <div className="col-4 float-left">
@@ -187,7 +187,7 @@ class CharacterCreation extends React.Component {
 
                     {/* This shows the chosen image */}
                   
-                      <ImageCard src={this.state.characterImage}/>
+                      <ImageCard size='3' src={this.state.characterImage}/>
                   
 
                     {/* This is the confirmation button that adds character to database and
@@ -207,7 +207,7 @@ class CharacterCreation extends React.Component {
               <h4 className="p-1">Choose your Character's Image</h4>
               <Row className="mt-2">
               {
-                this.state.characterArray.map(card => <ImageCard items={card} onClick={this.handleImageClick}/>)
+                this.state.characterArray.map(card => <ImageCard items={card} onClick={this.handleImageClick} size='3'/>)
               }
               </Row>
             </Form>

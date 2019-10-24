@@ -37,12 +37,14 @@ class App extends Component {
         );
       case "battle":
         return (
+          
           <BattleScreen
             handleState={this.handleGameState}
             currentState={this.state}
           />
         );
       case "shop":
+
           if(this.state.round === 3){
             this.handleGameState("end")
 
@@ -55,6 +57,7 @@ class App extends Component {
             );
     
           }
+
       case "end":
         
         this.loadLeaderBoard()
