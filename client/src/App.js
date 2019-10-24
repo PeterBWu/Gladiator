@@ -37,6 +37,7 @@ class App extends Component {
         );
       case "battle":
         return (
+          
           <BattleScreen
             handleState={this.handleGameState}
             currentState={this.state}

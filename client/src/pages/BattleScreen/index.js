@@ -1,7 +1,9 @@
 import React from 'react'
 import './style.css'
 import { Card, Form, Col, Row, Image, Button, Container } from 'react-bootstrap'
-import CharacterCreation from './../CharacterCreation'
+import ImageCard from './../CharacterCreation/ImageCard'
+import BattleCard from './BattleCard'
+import FightButton from './FightButton'
 import { runInThisContext } from 'vm'
 
 
@@ -10,13 +12,8 @@ import { runInThisContext } from 'vm'
 
 const style = {
   image: {
-    height: '45vh',
-    width: '15vw',
-  },
-  button: {
-    marginTop: '5vh',
-    textAlign: 'center',
-    height: '18vh'
+    height: '28vh',
+    width: '13vw',
   }
 }
 
@@ -28,96 +25,106 @@ class BattleScreen extends React.Component {
     oppentHealth: 'col-12',
     playerHealth: 'col-12',
     oppHealthCounter: 1,
-    playerHealthCounter: 1
+    playerHealthCounter: 1,
+    userHp: this.props.currentState.characterStat.hp,
+    currentOpponent: this.props.currentState.challengers.reverse()[this.props.currentState.round-1],
+    opponentHp: this.props.currentState.challengers.reverse()[this.props.currentState.round-1].leader_hp 
 
   }
 
   checkForWin = (round) => {
     console.log('Round - ' + round)
-    if(round === 3){
+    if (round === 4) {
       this.props.handleState('end')
     }
   }
 
   handleClick = props => {
-    console.log(this.props.currentState)
+    if (this.state.userHp < 0) {
+      console.log('lowerthan0')
+      this.props.handleState('end', true)
+    }
+    console.log(this.props.currentState.challengers[0])
     let randomNumber = Math.floor(Math.random() * 3) + 1
-    switch (randomNumber) {
+    switch (2) {
       case 1:
+        if (parseInt(this.state.userHp) <= 0) {
+          this.props.handleState('end', true)
+        }
         this.setState({
           playerHealthCounter: parseInt(this.state.playerHealthCounter) + 1,
+          userHp: parseInt(this.state.userHp) - Math.floor(parseInt(this.state.currentOpponent.leader_atk) / 2),
           textResult: 'You Took Damage',
           visualResult: 'https://cdn1.vectorstock.com/i/1000x1000/86/35/comic-boom-ouch-icon-flat-style-vector-19368635.jpg'
         })
-        switch (parseInt(this.state.playerHealthCounter)) {
-          case 1:
-            this.setState({
-              playerHealth: 'col-10'
-            })
-            break;
-          case 2:
-            this.setState({
-              playerHealth: 'col-8'
-            })
-            break;
-          case 3:
-            this.setState({
-              playerHealth: 'col-6'
-            })
-            break;
-          case 4:
-            this.setState({
-              playerHealth: 'col-4'
-            })
-            break;
-          case 5:
-            this.setState({
-              playerHealth: 'col-2'
-            })
-            break;
-          case 6:
-            this.props.handleState('end',true)
-            break;
-
-          default: console.log('error')
+        console.log(this.state.userHp)
+        if (parseInt(this.state.userHp) > 25) {
+          this.setState({
+            playerHealth: 'col-10'
+          })
+        }
+        else if (parseInt(this.state.userHp) > 20) {
+          this.setState({
+            playerHealth: 'col-8'
+          })
+        }
+        else if (parseInt(this.state.userHp) > 15) {
+          this.setState({
+            playerHealth: 'col-6'
+          })
+        }
+        else if (parseInt(this.state.userHp) > 10) {
+          console.log(this.state.userHp)
+          this.setState({
+            playerHealth: 'col-4'
+          })
+        }
+        else if (parseInt(this.state.userHp) > 0) {
+          this.setState({
+            playerHealth: 'col-2'
+          })
+        }
+        else if (parseInt(this.state.userHp) <= 0) {
+          this.props.handleState('end', true)
         }
         break;
       case 2:
+        if (this.state.opponentHp < 0) {
+          this.props.handleState('shop')
+        }
         this.setState({
+          opponentHp: parseInt(this.state.opponentHp - Math.floor(parseInt(this.props.currentState.characterStat.attack) / 2)),
           oppHealthCounter: parseInt(this.state.oppHealthCounter) + 1,
           textResult: 'You Cause Damage',
           visualResult: 'http://www.clipartbest.com/cliparts/9cz/6Xx/9cz6Xxryi.jpg',
         })
-        switch (parseInt(this.state.oppHealthCounter)) {
-          case 1:
-            this.setState({
-              oppentHealth: 'col-10'
-            })
-            break;
-          case 2:
-            this.setState({
-              oppentHealth: 'col-8'
-            })
-            break;
-          case 3:
-            this.setState({
-              oppentHealth: 'col-6'
-            })
-            break;
-          case 4:
-            this.setState({
-              oppentHealth: 'col-4'
-            })
-            break;
-          case 5:
-            this.setState({
-              oppentHealth: 'col-2'
-            })
-            break;
-          default: console.log('error')
-          case 6:            
-            this.props.handleState('shop')
-            break;
+        if (parseInt(this.state.opponentHp) > 25) {
+          this.setState({
+            oppentHealth: 'col-10'
+          })
+        }
+        else if (parseInt(this.state.opponentHp) >= 20) {
+          this.setState({
+            oppentHealth: 'col-8'
+          })
+        }
+        else if (parseInt(this.state.opponentHp) >= 15) {
+          this.setState({
+            oppentHealth: 'col-6'
+          })
+        }
+        else if (parseInt(this.state.opponentHp) >= 10) {
+          this.setState({
+            oppentHealth: 'col-4'
+          })
+        }
+        else if (parseInt(this.state.opponentHp) > 0) {
+          this.setState({
+            oppentHealth: 'col-2'
+          })
+        }
+        else if (parseInt(this.state.opponentHp) <= 0) {
+          this.props.handleState('shop')
         }
         break;
       case 3:
@@ -131,95 +138,77 @@ class BattleScreen extends React.Component {
   }
 
   render() {
-    { this.checkForWin(this.props.currentState.round) }
+    // { this.checkForWin(this.props.currentState.round) }
 
     return (
       <div className="container 100vh d-flex justify-content-center text-center mt-2">
         <div className="row bg-danger">
-          <div className="col-lg-6">
-            <div style={{ border: 'black solid 2px', textAlign: 'center' }}>
-              <Card>
-                <img src={this.state.visualResult} style={{ height: '30vh'}} />
+          <div className="col-lg-6 border border-dark">
+            <div style={{ textAlign: 'center' }}>
+              <img src={this.state.visualResult} style={{ width: '30vw', height: '30vh' }} />
+              <h3 style={{ marginTop: '5vh', marginBottom: '4vh' }}> {this.state.textResult}</h3>
+              <div className="row">
+                <div className="col-lg-6">
+                  <ImageCard
+                    src={this.state.currentOpponent.leader_portrait}
+                    size='12'
+                  />
+                </div>
+                <div className="col-lg-6">
+                  <div className="row">
+                    <BattleCard name={this.state.currentOpponent.leader_name}
+                      hp={this.state.opponentHp}
+                      attack={this.state.currentOpponent.leader_atk} 
+                      />
 
-                <h3 style={{ marginTop: '5vh', marginBottom: '4vh'}}> {this.state.textResult}</h3>
-              </Card>
-            </div>
-            <div style={{ border: 'black solid 2px'}}>
-              <Card style={{height: '52.56vh'}}>
-                <h3 style={{ marginTop: '50px' }}>Opponent's Health</h3>
-                <div style={{ height: '10vh', marginTop: '1vh' }}>
-                  <div className={this.state.oppentHealth} style={{ height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+
+                    <div className={this.state.oppentHealth}
+                      style={{ height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+                    </div>
                   </div>
                 </div>
-              </Card>
+              </div>
             </div>
           </div>
 
-          <div className="col-lg-6">
-            <div style={{ border: 'black solid 2px' }}>
-              <Card>
-                <Row>
-                  <Col xs={6} md={6}>
-                    <Button variant="warning" className="fluid">
-                      <Card.Body>
-                        <Card.Title className="text-left" >{this.props.currentState.characterStat.name}</Card.Title>
-                        <Card.Text>
-                          <div className='ml-3'>
-                            <Row>HP = {this.props.currentState.characterStat.hp}</Row>
-                            <Row>Attack = {this.props.currentState.characterStat.attack}</Row>
-                          </div>
-                        </Card.Text>
-                      </Card.Body>
-                    </Button>
-                  </Col>
-                  <Col xs={6} md={6}>
-                    <Card>
-                      <Card.Img src={this.props.currentState.characterStat.characterImage} />
-                    </Card>
-                  </Col>
-                </Row>
-              </Card>
-            </div>
 
-
-
-
-            <div style={{ border: 'black solid 2px' }}>
-              
-              <Card>
-              <h3 style={{ marginTop: '50px' }}>Your Health</h3>
-                <div style={{ height: '9vh', marginTop: '1vh' }}>
-                  <div className={this.state.playerHealth} style={{ height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
-                  </div>
+          <div className="col-lg-6 border border-dark">
+            <div className='row'>
+              <div className="col-xs-6 col-md-6">
+                <BattleCard name={this.props.currentState.characterStat.name}
+                  hp={this.state.userHp}
+                  attack={this.props.currentState.characterStat.attack} />
+                <div className={this.state.playerHealth}
+                  style={{ height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
                 </div>
+              </div>
+              <div className="col-xs-6 colmd-6">
+                <div className="card">
+                  <Card.Img
+                    src={this.props.currentState.characterStat.characterImage}
+                    style={style.image}
+                  />
+                </div>
+              </div>
+            </div>
+            <div style={{ border: 'black solid 2px', marginTop: '2vh' }}>
+              <Card>
                 <Container >
                   <Row>
-                    <Col xs={4} md={4}>
-                      <Card id={'rock'} onClick={this.handleClick} style={style.button}>
-                        <Card.Img src="https://cdn.clipart.email/1d7d60cb99465ed18209dddef3219a0b_red-box-clip-art-at-clkercom-vector-clip-art-online-royalty-_600-446.png" roundedCircle />
-                        <Card.ImgOverlay>
-                          <Card.Text className="mt-3">Grapple</Card.Text>
-                        </Card.ImgOverlay>
-                      </Card>
-                    </Col>
-                    <Col xs={4} md={4}>
-                      <Card id={'paper'} onClick={this.handleClick} style={style.button}>
-                        <Card.Img src="https://cdn.clipart.email/1d7d60cb99465ed18209dddef3219a0b_red-box-clip-art-at-clkercom-vector-clip-art-online-royalty-_600-446.png" roundedCircle />
-                        <Card.ImgOverlay>
-                          <Card.Text className="mt-3">Block</Card.Text>
-                        </Card.ImgOverlay>
-                      </Card>
-                    </Col>
-                    <Col xs={4} md={4}>
-                      <Card id={'scissors'} onClick={this.handleClick} style={style.button}>
-                        <Card.Img src="https://cdn.clipart.email/1d7d60cb99465ed18209dddef3219a0b_red-box-clip-art-at-clkercom-vector-clip-art-online-royalty-_600-446.png" roundedCircle />
-                        <Card.ImgOverlay>
-                          <Card.Text className="mt-3">Strike</Card.Text>
-                        </Card.ImgOverlay>
-                      </Card>
-                    </Col>
+                    <FightButton id={'rock'}
+                      onClick={this.handleClick}
+                      type="Grapple"
+                    />
+                    <FightButton id={'paper'}
+                      onClick={this.handleClick}
+                      type="Defend"
+                    />
+                    <FightButton id={'scissors'}
+                      onClick={this.handleClick}
+                      type="Grapple"
+                    />
                   </Row>
-                </Container>  
+                </Container>
               </Card>
             </div>
           </div>
