@@ -13,7 +13,7 @@ const LadderStep = props => {
 
     <Row>
       <Col>
-        <Card style={{ height: "75%", width: "auto" }}>
+        <Card style={{ height: "30vh", width: '250px', marginTop: "3vh"}}>
           <Card.Text 
             variant="top"
             style={{  width:`auto`,

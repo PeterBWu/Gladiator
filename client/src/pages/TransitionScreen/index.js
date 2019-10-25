@@ -10,7 +10,7 @@ function TransitionScreen(props) {
   return (
     <Row>
       <Col md={4}>
-        <Row>
+        <Row className="d-flex justify-content-right">
           <Col>
           <Ladder round={props.currentState.round} challengers={props.currentState.challengers}/>
           </Col>
