@@ -18,7 +18,7 @@ class Start extends Component {
         <Row className={styles.cardRow}>
           <Col xs={12}>
             <Card className={`${styles.cardSize} border-0`}>
-              <Card.Img src={Logo} fluid />
+              <Card.Img src={Logo}   />
               <Card.Body className="bg-dark">
                 <Row className="mt-2">
                   <Col>

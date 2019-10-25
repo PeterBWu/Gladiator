@@ -20,7 +20,6 @@ function Champion(props) {
         </Card.Body>
         <Card.Text 
           variant="bottom"
-          alt="Current Champion" 
           style={{  width:`auto`,
                     height:`250px`,
                     backgroundSize:`cover`,
