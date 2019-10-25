@@ -1,6 +1,6 @@
 import React from 'react'
 import './style.css'
-import { Card, Form, Col, Row, Image, Button, Container } from 'react-bootstrap'
+import { Card, Row, Container } from 'react-bootstrap'
 import ImageCard from './../CharacterCreation/ImageCard'
 import BattleCard from './BattleCard'
 import FightButton from './FightButton'
@@ -13,11 +13,10 @@ import { runInThisContext } from 'vm'
 
 
 
-
 const style = {
   image: {
-    height: '28vh',
-    width: '13vw',
+    backgroundPosition: 'center',
+    backgourndSize: 'auto-fill'
   }
 }
 
@@ -33,23 +32,23 @@ class BattleScreen extends React.Component {
     playerHealthCounter: 1,
     userHp: this.props.currentState.characterStat.hp,
     userMaxHp: this.props.currentState.characterStat.hp,
-    currentOpponent: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1],
-    opponentMaxHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
-    opponentHp: this.props.currentState.challengers.reverse()[this.props.currentState.round - 1].leader_hp,
+    currentOpponent: [...this.props.currentState.challengers].reverse()[this.props.currentState.round - 1],
+    opponentMaxHp: [...this.props.currentState.challengers].reverse()[this.props.currentState.round - 1].leader_hp,
+    opponentHp: [...this.props.currentState.challengers].reverse()[this.props.currentState.round - 1].leader_hp,
 
 
   }
 
   checkUserLose = (userHp) => {
       if (userHp <= 0){
-        this.props.handleState('end')
+        this.props.handleState('end', true)
       }
   }
 
   checkOpponentLose = (opponentHp) => {
-      if(opponentHp <= 0){
-        this.props.handleState('shop')
-      }
+    if (opponentHp <= 0) {
+      this.props.handleState('shop')
+    }
   }
 
   handleClick = props => {
@@ -57,9 +56,8 @@ class BattleScreen extends React.Component {
       console.log('lowerthan0')
       this.props.handleState('end', true)
     }
-  
     let randomNumber = Math.floor(Math.random() * 3) + 1
-    switch (randomNumber) {
+    switch (2) {
       case 1:
         if (parseInt(this.state.userHp) <= 0) {
           this.props.handleState('end', true)
@@ -94,8 +92,8 @@ class BattleScreen extends React.Component {
 
   render() {
     // { this.checkForWin(this.props.currentState.round) }
-        {this.checkUserLose(this.state.userHp)}
-        {this.checkOpponentLose(this.state.opponentHp)}
+    { this.checkUserLose(this.state.userHp) }
+    { this.checkOpponentLose(this.state.opponentHp) }
     return (
       <div className="container 100vh d-flex justify-content-center text-center mt-2">
         <div className="row bg-danger">
@@ -118,17 +116,20 @@ class BattleScreen extends React.Component {
                       <BattleCard name={this.state.currentOpponent.leader_name}
                         hp={this.state.opponentHp}
                         attack={this.state.currentOpponent.leader_atk}
+                        style={style.image}
                       />
                     </div>
                   </div>
                   <div className="row">
                     <div className="col-md-12">
                       <div
-                        style={{ width: `${(this.state.opponentHp / this.state.opponentMaxHp) * 100}%`, 
-                        height: '9vh', 
-                        backgroundColor: 'green', 
-                        border: 'dotted blue 5px' }}
-                        >
+                        style={{
+                          width: `${(this.state.opponentHp / this.state.opponentMaxHp) * 100}%`,
+                          height: '9vh',
+                          backgroundColor: 'green',
+                          border: 'dotted blue 5px'
+                        }}
+                      >
                       </div>
                     </div>
                   </div>
@@ -143,17 +144,21 @@ class BattleScreen extends React.Component {
               <div className="col-xs-6 col-md-6">
                 <BattleCard name={this.props.currentState.characterStat.name}
                   hp={this.state.userHp}
-                  attack={this.props.currentState.characterStat.attack} 
-                  />
-                
-                
+                  attack={this.props.currentState.characterStat.attack}
+                />
+
+
                 <div classname="row">
                     <div className="col-md-12">
                       <div
-                        style={{ width: `${(this.state.userHp / this.state.userMaxHp) * 100}%`, height: '9vh', backgroundColor: 'green', border: 'dotted blue 5px' }}>
+                        style={{ width: `${(this.state.userHp / this.state.userMaxHp) * 100}%`, 
+                        height: '9vh', 
+                        backgroundColor: 'green', 
+                        border: 'dotted blue 5px' }}>
                       </div>
                     </div>
                   </div>
+                </div>
 
 
               </div>
@@ -190,7 +195,8 @@ class BattleScreen extends React.Component {
             </div>
           </div>
         </div>
-      </div >
+     
+    
     )
   }
 }

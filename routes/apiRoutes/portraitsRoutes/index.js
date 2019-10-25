@@ -2,9 +2,11 @@ const router = require('express').Router();
 const portraitsController = require('./../../../controllers/portraitsController');
 
 
-// /api/items
+// /api/portraits
 router.route('/')
     .get(portraitsController.getRandomPortrait)
-    .get(portraitsController.getPortrait)
+
+// router.route('/')
+//     .get(portraitsController.getPortrait)
 
 module.exports = router;

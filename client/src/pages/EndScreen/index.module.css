@@ -12,9 +12,9 @@
 .victors{
   /* position: absolute; */
   width: 145px;
-  height: 145px;
+  /* height: 145px;  */
   text-align: center;
-  background: #AFAEF2;
+  background: gold;
   display:flex;
   flex-direction: column;
   justify-content: center;
@@ -22,9 +22,9 @@
 
 .leader{
   width: 145px;
-  height: 145px;
+  /* height: 145px;  */
   text-align: center;
-  background: #FFE5BD;
+  background:red;
   display:flex;
   flex-direction: column;
   justify-content: center

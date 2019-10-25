@@ -17,13 +17,13 @@ VALUES
 ("Potion of Calm", "./../assets/item_img/pot_grey.jpg", 0, 5),
 ("Gauntlet of the Inferno", "./../assets/item_img/gauntlet.png", 10, -5),
 ("Armor of the Mountain", "./../assets/item_img/armor.jpg", -5, 10),
-("Belt of Giant's Strength", "./../assets/item_img/belt.jpeg", +10, 0),
+("Belt of Giant's Strength", "./../assets/item_img/belt.jpg", +10, 0),
 ("Boots of Cat's Grace", "./../assets/item_img/boots.jpg", +0, +10),
 ("Blade of Irresistable Force", "./../assets/item_img/sword.jpg", +20, -10),
 ("Shield of the Immovable Object", "./../assets/item_img/shield.png", -10, 20);
 
-INSERT INTO portraits (port_imgitem, port_sex)
 
+INSERT INTO portraits (port_img, port_sex)
 VALUES
 ("./../assets/portraits_new/port_m1.png", "m"),
 ("./../assets/portraits_new/port_m2.png", 'm'),

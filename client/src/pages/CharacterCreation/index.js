@@ -5,6 +5,7 @@ import { ModalHeader, Modal, ModalBody, ModalFooter } from 'reactstrap'
 import ImageCard from './ImageCard'
 import FightStyle from './FightStyle'
 import BattleCard from './../BattleScreen/BattleCard'
+import axios from 'axios'
 
 
 
@@ -36,6 +37,18 @@ class CharacterCreation extends React.Component {
       }
     ]
   }
+
+  componentDidMount(){
+    axios.get('api/portraits')
+      .then(response => {
+        this.setState({ characterArray: response.data})
+        console.log(this.state.characterArray)
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
 
   handleAttributeClick = props => {
     console.log(props.currentTarget.id)
