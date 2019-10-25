@@ -30,7 +30,7 @@ class Shop extends Component {
   render() {
     return (
       <div>
-        <h1>The shop</h1>
+        <h1>The Shop</h1>
         <Row>
           {this.state.items.map(item => (
             <Potions

@@ -1,4 +1,4 @@
-INSERT INTO leaderboard (leader_name, leader_portrait, leader_atk, leader_hp)
+	INSERT INTO leaderboard (leader_name, leader_portrait, leader_atk, leader_hp)
 VALUES
 ("William the Conqueror", "./../assets/portraits_old/william_the_conqueror.jpg", 30, 30),
 ("Hannibal Barca", "./../assets/portraits_old/hannibal_barca.jpg", 30, 30),
@@ -19,8 +19,8 @@ VALUES
 ("Armor of the Mountain", "./../assets/item_img/armor.jpg", -5, 10),
 ("Belt of Giant's Strength", "./../assets/item_img/belt.jpg", +10, 0),
 ("Boots of Cat's Grace", "./../assets/item_img/boots.jpg", +0, +10),
-("Blade of Irresistable Force", "./../assets/item_img/sword.jpg", +20, -10),
-("Shield of the Immovable Object", "./../assets/item_img/shield.png", -10, 20);
+("The Unstoppable Blade", "./../assets/item_img/sword.jpg", +20, -10),
+("The Immovable Shield", "./../assets/item_img/shield.png", -10, 20);
 
 
 INSERT INTO portraits (port_img, port_sex)

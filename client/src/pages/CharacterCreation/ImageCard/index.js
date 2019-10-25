@@ -4,8 +4,8 @@ import { Row, Col, Image } from 'react-bootstrap'
 
 const style = {
   image: {
-    height: '183px',
-    width: '250px',
+    height: '220px',
+    width: 'auto',
   }
 }
 

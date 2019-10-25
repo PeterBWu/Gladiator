@@ -12,9 +12,13 @@ const Potions = props => {
         <Card.Img
           variant="top"
           src={item.item_img}
+          style= {{ height: '220px', width: 'auto', objectFit: 'cover' }}
         />
         <Card.Body>
-          <Card.Title>{item.item_name}</Card.Title>
+          <Card.Title
+            style={{ fontSize: 'medium' }}
+          >
+            {item.item_name}</Card.Title>
           <Card.Text>
             This potion will increase your hp by {item.item_hp} and atk by{" "}
             {item.item_atk}
