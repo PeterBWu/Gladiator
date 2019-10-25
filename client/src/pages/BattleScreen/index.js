@@ -4,8 +4,11 @@ import { Card, Row, Container } from 'react-bootstrap'
 import ImageCard from './../CharacterCreation/ImageCard'
 import BattleCard from './BattleCard'
 import FightButton from './FightButton'
-
-
+import FightStart from '../../assets/background/battle.png'
+import Hit from '../../assets/background/playerhit.png'
+import Miss from '../../assets/background/miss.png'
+import Damage from '../../assets/background/opponenthit.png'
+import { runInThisContext } from 'vm'
 
 
 
@@ -20,7 +23,8 @@ const style = {
 class BattleScreen extends React.Component {
 
   state = {
-    visualResult: "https://i0.wp.com/growingasdisciples.com/wp-content/uploads/2017/05/make-the-first-move1.jpg?ssl=1",
+    // visualResult: "https://i0.wp.com/growingasdisciples.com/wp-content/uploads/2017/05/make-the-first-move1.jpg?ssl=1",
+    visualResult: FightStart,
     textResult: "Result",
     oppentHealth: 'col-12',
     playerHealth: 'col-12',
@@ -52,7 +56,6 @@ class BattleScreen extends React.Component {
       console.log('lowerthan0')
       this.props.handleState('end', true)
     }
-
     let randomNumber = Math.floor(Math.random() * 3) + 1
     switch (2) {
       case 1:
@@ -63,7 +66,7 @@ class BattleScreen extends React.Component {
           playerHealthCounter: parseInt(this.state.playerHealthCounter) + 1,
           userHp: parseInt(this.state.userHp) - Math.floor(parseInt(this.state.currentOpponent.leader_atk) / 2),
           textResult: 'You Took Damage',
-          visualResult: 'https://cdn1.vectorstock.com/i/1000x1000/86/35/comic-boom-ouch-icon-flat-style-vector-19368635.jpg'
+          visualResult: Hit,
         })
         break;
       case 2:
@@ -74,13 +77,13 @@ class BattleScreen extends React.Component {
           opponentHp: parseInt(this.state.opponentHp - Math.floor(parseInt(this.props.currentState.characterStat.attack) / 2)),
           oppHealthCounter: parseInt(this.state.oppHealthCounter) + 1,
           textResult: 'You Cause Damage',
-          visualResult: 'http://www.clipartbest.com/cliparts/9cz/6Xx/9cz6Xxryi.jpg',
+          visualResult: Damage,
         })
         break;
       case 3:
         this.setState({
           textResult: 'No Damage',
-          visualResult: 'https://previews.123rf.com/images/kapitosh/kapitosh1612/kapitosh161200101/67522871-lettering-wtf-comic-text-sound-effects-pop-art-style-vector-negative-bubble-icon-speech-phrase-carto.jpg'
+          visualResult: Miss,
         })
         break;
       default: console.log('error')
@@ -96,7 +99,9 @@ class BattleScreen extends React.Component {
         <div className="row bg-danger">
           <div className="col-lg-6 border border-dark">
             <div style={{ textAlign: 'center' }}>
-              <img src={this.state.visualResult} style={{ width: '30vw', height: '30vh' }} />
+              <img  src={this.state.visualResult} 
+                    style={{  width: '30vw', 
+                              height: '30vh' }} />
               <h3 style={{ marginTop: '5vh', marginBottom: '4vh' }}> {this.state.textResult}</h3>
               <div className="row">
                 <div className="col-lg-6">
@@ -115,7 +120,7 @@ class BattleScreen extends React.Component {
                       />
                     </div>
                   </div>
-                  <div classname="row">
+                  <div className="row">
                     <div className="col-md-12">
                       <div
                         style={{
@@ -166,7 +171,9 @@ class BattleScreen extends React.Component {
                 </div>
               </div>
             </div>
-            <div style={{ border: 'black solid 2px', marginTop: '2vh' }}>
+            <div style={{ border: 'black solid 1.5px', 
+                          borderRadius: '6  px',
+                          marginTop: '2vh' }}>
               <Card>
                 <Container >
                   <Row>
