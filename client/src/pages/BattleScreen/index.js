@@ -15,8 +15,10 @@ import { runInThisContext } from 'vm'
 
 const style = {
   image: {
-    height: '35vh',
-    width: '15vw',
+    height: '250px',
+    width: 'auto',
+    marginTop: '10px',
+    marginBottom: '10px',
   }
 }
 
@@ -127,9 +129,10 @@ class BattleScreen extends React.Component {
                       <div
                         style={{
                           width: `${(this.state.opponentHp / this.state.opponentMaxHp) * 100}%`,
-                          height: '9vh',
+                          height: '20px',
                           backgroundColor: 'green',
-                          border: 'dotted blue 5px'
+                          border: 'dotted blue 2px',
+                          marginTop: '15px'
                         }}
                       >
                       </div>
@@ -155,9 +158,10 @@ class BattleScreen extends React.Component {
                     <div
                       style={{
                         width: `${(this.state.userHp / this.state.userMaxHp) * 100}%`,
-                        height: '9vh',
+                        height: '20px',
                         backgroundColor: 'green',
-                        border: 'dotted blue 5px'
+                        border: 'dotted blue 2px',
+                        marginTop: '15px'
                       }}>
                     </div>
                   </div>
@@ -179,7 +183,7 @@ class BattleScreen extends React.Component {
             <div style={{
               border: 'black solid 1.5px',
               borderRadius: '6px',
-              marginTop: '10vh'
+              marginTop: '10vh',
             }}>
               <Card>
                 <Container >

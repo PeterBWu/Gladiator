@@ -5,9 +5,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Image from "react-bootstrap/Image";
 
 import styles from "./index.module.css";
 import Logo from "./pictures/titlelogo.png";
+import GitHub from "../../assets/icons/github.png"
 import Champion from "./Champion";
 
 class Start extends Component {
@@ -35,6 +37,17 @@ class Start extends Component {
                   </Col>
                 </Row>
               </Card.Body>
+              <Card.Footer className="text-muted bg-dark">
+                <Row>
+                  <Col xs={11} >Created By: Peter Wu | Paul Thomas | Andrew Jolivette | Robert Kutner | Amy Halim</Col>
+                  <Col xs={1}>
+                    <a href='https://github.com/PeterBWu/Gladiator' target='_blank'>
+                      <Image src={GitHub} style={{ height: "30px", width: "30px" }} />
+                    </a>
+                  </Col>
+                </Row>
+                
+              </Card.Footer>
             </Card>
           </Col>
         </Row>

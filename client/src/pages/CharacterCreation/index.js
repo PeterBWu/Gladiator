@@ -7,7 +7,7 @@ import FightStyle from './FightStyle'
 import BattleCard from './../BattleScreen/BattleCard'
 import axios from 'axios'
 
-
+import UnknownPortrait from '../../assets/icons/question-mark.jpg'
 
 
 class CharacterCreation extends React.Component {
@@ -17,7 +17,7 @@ class CharacterCreation extends React.Component {
     hp: '?',
     attack: '?',
     counter: 0,
-    characterImage: "https://making-the-web.com/sites/default/files/clipart/164002/question-mark-pics-164002-8941717.jpg",
+    characterImage: UnknownPortrait,
     characterArray: [
       {
         src: "https://i.pinimg.com/474x/03/78/dc/0378dcb5a549eb2eecb38cb0ea344173.jpg",
@@ -86,7 +86,7 @@ class CharacterCreation extends React.Component {
   };
 
   handleSubmit = event => {
-    if (!this.state.name || this.state.hp === '?' || this.state.characterImage === "https://making-the-web.com/sites/default/files/clipart/164002/question-mark-pics-164002-8941717.jpg") {
+    if (!this.state.name || this.state.hp === '?' || this.state.characterImage === UnknownPortrait ) {
       this.setState({
         modalAlert: !this.state.modalAlert
       })
@@ -105,7 +105,7 @@ class CharacterCreation extends React.Component {
     event.preventDefault();
     this.toggle();
     console.log(this.state)
-    this.props.handleState("shop", null, this.state)
+    this.props.handleState("battle", null, this.state)
   }
 
   toggle = () => {
@@ -135,16 +135,16 @@ class CharacterCreation extends React.Component {
             <div className="col-4 float-left">
               <h4>Choose Your Fighting Style</h4>
 
-              <FightStyle id="Archer-40-20"
+              <FightStyle id="Warrior-40-20"
                 onClick={this.handleAttributeClick}
-                name="Archer"
+                name="Warrior"
                 hp="40"
                 attack="20"
               />
 
-              <FightStyle id="Warrior-20-40"
+              <FightStyle id="Archer-20-40"
                 onClick={this.handleAttributeClick}
-                name="Warrior"
+                name="Archer"
                 hp="20"
                 attack="40"
               />
